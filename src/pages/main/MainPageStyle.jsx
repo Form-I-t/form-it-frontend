@@ -25,12 +25,14 @@ export const GuideText = styled.div`
 
   font-size: var(--font-large);
   font-weight: var(--weight-thin);
+  white-space: nowrap;
 `;
 
 export const NickText = styled.div`
   font-size: 30px;
   font-weight: var(--weight-semi-bold);
   color: var(--main-green);
+  white-space: nowrap;
 `;
 
 export const NumberZone = styled.div`

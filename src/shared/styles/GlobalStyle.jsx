@@ -81,11 +81,13 @@ const GlobalStyle = createGlobalStyle`
     border: none;
     outline: none;
     background-color: transparent;
+    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui,
+      Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic",
+      "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   }
 
   input::placeholder {
     color: var(--grey-normal);
-    font-weight: var(--weight-semi-bold);
   }
 
   ul {
@@ -93,6 +95,26 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     list-style: none;
     padding-left: 0;
+  }
+  /* 스크롤바 설정*/
+  ul::-webkit-scrollbar{
+    width: 20px;
+    height: 0px;
+    margin-right: 4px;
+  }
+
+  /* 스크롤바 막대 설정*/
+  ul::-webkit-scrollbar-thumb{
+    background-color: var(--level-three);
+    /* 스크롤바 둥글게 설정    */
+    border-radius: 12px; 
+    border: 7px solid var(--level-one);
+  }
+
+  /* 스크롤바 뒷 배경 설정*/
+  ul::-webkit-scrollbar-track{
+    background-color: var(--level-one);
+    border-radius: 12px; 
   }
 
   button {
@@ -112,7 +134,6 @@ const GlobalStyle = createGlobalStyle`
     height: 4px;
     background-color: var(--color-dark-white);
   }
-
 `;
 
 export default GlobalStyle;

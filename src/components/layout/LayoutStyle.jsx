@@ -25,6 +25,7 @@ export const Header = styled.div`
   height: 100px;
   z-index: 900;
   justify-content: end;
+  background-color: var(--main-black);
 
   @media screen and (min-width: 764px) {
     width: var(--responsive-width);

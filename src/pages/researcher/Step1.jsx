@@ -4,9 +4,10 @@ import { useDispatch } from 'react-redux';
 
 import * as ResrchST from './ResrchStyle';
 import * as SignST from '../signup/SignUpStyle';
+import * as MainST from '../main/MainPageStyle';
+import * as LoginST from '../login/LoginStyle';
 
 import Layout from '../../components/layout/Layout';
-import Progress1 from '../../components/imgs/researcher/Progress1.png';
 import FormIcon from '../../components/imgs/researcher/FormIcon.png';
 import CancelModal from './CancelModal';
 import CautionModal from '../../components/modal/CautionModal';
@@ -62,29 +63,32 @@ export default function Step1() {
         {isBlank === true ?
         <CautionModal setIsBlank={setIsBlank} modalMsg={modalMsg}/> : <></>}
             <SignST.ContentZone>
-                <ResrchST.ProgressBar src={Progress1}/>
-                <SignST.SignupGuide>
-                    설문받을 Google Form의
-                </SignST.SignupGuide>
-                <SignST.NotLogoText>
-                    <SignST.LogoText>URL</SignST.LogoText>을 입력해주세요.
-                </SignST.NotLogoText>
+                <ResrchST.PgZone>
+                    <ResrchST.PgBar3/>
+                </ResrchST.PgZone>
+
+                <MainST.GuideText>
+                    설문받을&nbsp;<MainST.NickText>Google Form</MainST.NickText>의
+                </MainST.GuideText>
+                <MainST.GuideText>
+                    <MainST.NickText>URL</MainST.NickText>을 입력해주세요.
+                </MainST.GuideText>
 
                 <ResrchST.FormIcon src={FormIcon}/>
-                <SignST.InputBox
+                <LoginST.InputBox
                     name = "formUrl"
                     type = 'text'
                     value = {formUrl}
                     onChange = {onInputChange}
-                    placeholder = 'URL 입력'>
-                </SignST.InputBox>
+                    placeholder = 'URL을 복붙해주세요 !'>
+                </LoginST.InputBox>
 
                 <ResrchST.ButtonZone>
                     <ResrchST.CancelBtn onClick={()=>{setIsModal(true)}}>
-                        취소하기
+                        돌아가기
                     </ResrchST.CancelBtn>
                     <ResrchST.NextBtn onClick={nextHandler}>
-                        다음 단계
+                        다음으로
                     </ResrchST.NextBtn>
                 </ResrchST.ButtonZone>
             </SignST.ContentZone>

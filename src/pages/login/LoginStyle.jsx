@@ -66,7 +66,6 @@ export const CautionText = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 4px;
 
   color: var(--main-pink);
   font-size: var(--font-small);

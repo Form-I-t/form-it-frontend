@@ -8,7 +8,6 @@ export default function CautionModal({setIsBlank, modalMsg}) {
             <ModalST.ModalBox>
                 <ModalST.Modalname>
                     <SVG name='Caution' size='18' color='var(--red-caution)'/>
-                    <ModalST.ModalnameBlank/>
                     {modalMsg}
                 </ModalST.Modalname>
                 <ModalST.Option onClick={()=>{setIsBlank(false)}}>확인</ModalST.Option>

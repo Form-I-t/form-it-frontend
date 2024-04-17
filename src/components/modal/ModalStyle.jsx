@@ -6,7 +6,8 @@ export const Overlay = styled.div`
   width: 100%;
   height: 100%;
 
-  background: rgba(33, 33, 33, 0.3);
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(5px);
   z-index: 900;
 
   display: flex;
@@ -14,12 +15,35 @@ export const Overlay = styled.div`
   align-items: center;
 `;
 
+export const ModalZone = styled.div`
+  position: relative;
+  width: 280px;
+  height: fit-content;
+  
+  justify-content: center;
+  display: flex;
+  font-size: var(--font-small);
+`;
+
+export const ModalIcon = styled.div`
+  position: absolute;
+  width: 70px; 
+  height: 70px;
+  top: -35px;
+  z-index: 900;
+
+  border-radius: 70px;
+  background: var(--main-white);
+`;
+
+//높이 고정해놨음!
 export const ModalBox = styled.div`
   position: relative;
-  width: 320px;
-  height: fit-content;
+  width: 100%;
+  height: 210px;
+  padding: 16px;
 
-  background: var(--white-default);
+  background: var(--level-two);
   border-radius: 16px;
 
   text-align: center;
@@ -29,26 +53,41 @@ export const ModalBox = styled.div`
 export const Modalname = styled.div`
   width: 100%;
   height: fit-content;
-  padding: 24px 0 24px 0;
+  margin-top: 20px;
+  padding: 16px;
 
-  color: var(--grey-normal);
-`;
-
-export const ModalnameBlank = styled.div`
-  height: 8px;
+  color: var(--main-white);
 `;
 
 export const Option = styled.div`
   width: 100%;
-  height: 50px;
+  height: 40px;
+  margin-bottom: 10px;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
-  color: var(--grey-normal);
-  font-weight: var(--weight-semi-bold);
-  border-top: 1px solid var(--grey-blur-light);
+  border-radius: 10px;
+
+  color: var(--main-green);
+  font-weight: var(--weight-bold);
+  border: 1px solid var(--main-green);
+`;
+
+export const BetterOption = styled.div`
+  width: 100%;
+  height: 40px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 10px;
+
+  color: var(--main-black);
+  font-weight: var(--weight-bold);
+  background-color: var(--main-green);
 `;
 
 export const Cancel = styled.div`

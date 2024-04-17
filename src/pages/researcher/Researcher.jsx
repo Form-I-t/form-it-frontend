@@ -19,21 +19,34 @@ export default function Researcher() {
     return (
         <>
         <Layout>
-            <SignST.ContentZone>
-                <ResrchST.Character/>
-                <ResrchST.GuideBox>
-                    <ResrchST.GuideText>비용 안내</ResrchST.GuideText>
-                    <ResrchST.GuideImg1/>
-                    <ResrchST.GuideText>환불 안내</ResrchST.GuideText>
-                    저희가 서비스해 드린 만큼만 받겠습니다. <br/>
-                    설문조사 기간이 마감되거나, 설문조사 강제종료 시
-                    응답자 수가 미달된 만큼 무조건 환급해드립니다.
-                    <ResrchST.GuideImg2/>
-                </ResrchST.GuideBox>
-                <ResrchST.StartBtn onClick={()=>{navigate('/step1')}}>
-                    설문조사 접수하기
-                </ResrchST.StartBtn>
-            </SignST.ContentZone>
+            <ResrchST.ResrchContent>
+                <ResrchST.IntroTitle>
+                    폼잇은요 ...
+                </ResrchST.IntroTitle>
+
+                <ResrchST.BoxZone>
+                    
+                    <ResrchST.LeftBox/>
+                    <ResrchST.CenterBox/>
+                    <ResrchST.RightBox/>
+                </ResrchST.BoxZone>
+
+                <ResrchST.IntroText>
+                    비용 안내
+                    <ResrchST.SmallText>
+                        저희가 서비스해 드린 만큼만 받겠습니다. <br/>
+                        설문조사 기간이 마감되거나, 설문조사 강제종료 시 <br/>
+                        응답자 수가 미달된 만큼 무조건 환급해드립니다.                        
+                    </ResrchST.SmallText>
+                </ResrchST.IntroText>
+
+                <ResrchST.Footer>
+                <ResrchST.SuccessBtn onClick={()=>{navigate('/step1')}}>
+                    접수 시작하기
+                </ResrchST.SuccessBtn>
+                </ResrchST.Footer>
+
+            </ResrchST.ResrchContent>
         </Layout>
         </>
     );

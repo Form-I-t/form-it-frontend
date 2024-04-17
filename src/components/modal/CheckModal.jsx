@@ -1,5 +1,4 @@
 import * as ModalST from './ModalStyle'
-import SVG from '../imgs/SVG'
 
 export default function CautionModal({setIsBlank, modalMsg}) {
 
@@ -7,7 +6,6 @@ export default function CautionModal({setIsBlank, modalMsg}) {
         <ModalST.Overlay>
             <ModalST.ModalBox>
                 <ModalST.Modalname>
-                    <SVG name='Check' size='18' color='var(--green-success)'/>
                     <ModalST.ModalnameBlank/>
                     {modalMsg}
                 </ModalST.Modalname>

@@ -36,21 +36,25 @@ export default function SignUp() {
         login({email: email, password: pw})
         .then(response => {
             if (parseInt(Number(response.status) / 100) === 2) {
-                setRefreshToken(response.headers['authorization']);
-                dispatch(SET_TOKEN(response.headers['refresh_token']));
-                userInfo(response.data.memberId)
-                .then(res => {
-                    if (parseInt(Number(res.status) / 100) === 2) {
-                        dispatch(SET_USER(res.data.memberInfo));
-                    } else {
+                if ((email || pw) === '') {
+                    setIsCantLogin(true);
+                } else {
+                    setRefreshToken(response.headers['authorization']);
+                    dispatch(SET_TOKEN(response.headers['refresh_token']));
+                    userInfo(response.data.memberId)
+                    .then(res => {
+                        if (parseInt(Number(res.status) / 100) === 2) {
+                            dispatch(SET_USER(res.data.memberInfo));
+                        } else {
+                            setIsCantLogin(true);
+                            resetInput();
+                        }
+                    }).catch((error) => {
                         setIsCantLogin(true);
                         resetInput();
-                    }
-                }).catch((error) => {
-                    setIsCantLogin(true);
-                    resetInput();
-                })
-                navigate('/');
+                    })
+                    navigate('/');                    
+                }            
             } else {
                 setIsCantLogin(true);
                 resetInput();
@@ -96,7 +100,7 @@ export default function SignUp() {
                 {/* 로그인 성공여부 */}
                 {(isCantLogin === true) ? (
                     <LoginST.CautionText>
-                        <SVG name='Caution' size='18' color='var(--main-pink)'/>
+                        <SVG name='Caution' size='15' color='var(--main-pink)'/>
                         이메일과 비밀번호를 다시 확인해주세요 !
                     </LoginST.CautionText>
                 ) : (

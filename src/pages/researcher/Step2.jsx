@@ -5,9 +5,9 @@ import { useSelector } from 'react-redux';
 
 import * as ResrchST from './ResrchStyle';
 import * as SignST from '../signup/SignUpStyle';
+import * as MainST from '../main/MainPageStyle';
 
 import Layout from '../../components/layout/Layout';
-import Progress2 from '../../components/imgs/researcher/Progress2.png';
 import CancelModal from './CancelModal';
 import SVG from '../../components/imgs/SVG';
 import CautionModal from '../../components/modal/CautionModal';
@@ -30,9 +30,15 @@ export default function Step2() {
     const [pomOpen, setPomOpen] = useState(false);
 
     const surveyId = useSelector((state) => state.survey.id);
-    const [people, setPeople] = useState(10);
-    const [point, setPoint] = useState(100);
+    const [people, setPeople] = useState(0);
+    const [point, setPoint] = useState(0);
     const [finalPrice, setFinalPrice] = useState(0);
+
+    const [inputPe, setInputPe] = useState(false);
+    const [inputPo, setInputPo] = useState(false);
+    const [inputSd, setInputSd] = useState(false);
+    const [inputEd, setInputEd] = useState(false);
+    const [nextActi, setNextActi] = useState(false);
 
     const [ { startDate, endDate },
             onInputChange,
@@ -79,7 +85,7 @@ export default function Step2() {
                     //예외처리
                     resetInput();
                 }
-            }).catch((error) => {
+            }).catch((error) =>  {
                 //예외처리
                 resetInput();
             })
@@ -91,6 +97,12 @@ export default function Step2() {
     }, []);
 
     useEffect(() => {
+        if (people !== 0) {setInputPe(true)};
+        if (point !== 0) {setInputPo(true)};
+        if (startDate !== '') {setInputSd(true)};
+        if (endDate !== '') {setInputEd(true)};
+
+        //결제 금액 계산
         if ( (startDate === "") || (endDate === "") ) {
             setFinalPrice(0);
         } else {
@@ -137,8 +149,13 @@ export default function Step2() {
             } else {
                 setFinalPrice(price);
             }
+
+            //다음버튼 활성화
+            if ( finalPrice !== (0 || NaN) ) {
+                setNextActi(true);
+            }
         }
-    }, [people, point, startDate, endDate])
+    }, [people, point, startDate, endDate]);
 
     return (
         <>
@@ -149,125 +166,139 @@ export default function Step2() {
         {/* 빈칸경고모달 */}
         {isBlank === true ?
         <CautionModal setIsBlank={setIsBlank} modalMsg={modalMsg}/> : <></>}
+
             <SignST.ContentZone>
-                <ResrchST.ProgressBar src={Progress2}/>
-                <SignST.SignupGuide>
-                    <SignST.LogoText>게시 조건</SignST.LogoText>을 설정해주세요.
-                </SignST.SignupGuide>
-                <div style={{ width: '100%', height: '24px'}}/>
+                <ResrchST.PgZone>
+                    <ResrchST.PgBar2/><ResrchST.PgBar3/>
+                </ResrchST.PgZone>
+                
+                <MainST.GuideText>
+                    <MainST.NickText>게시 조건</MainST.NickText>을 설정해주세요.
+                </MainST.GuideText>
+                <div style={{ height: '24px'}}/>
                 <ResrchST.FormBox>
-                    <ResrchST.FormTitle>
-                        희망 응답자 수
-                        <ResrchST.FormDetail>
-                            몇 명의 참여자가 필요하신가요?
-                        </ResrchST.FormDetail>
-                    </ResrchST.FormTitle>
-                    <ResrchST.DropDown onClick={PemHandler}>
-                        <ResrchST.LooksLikeInput>
-                            {people} 명
-                            <SVG
-                                name='Open'
-                                size='10'
-                                color='var(--grey-normal)'/>
-                        </ResrchST.LooksLikeInput>
+                    <ResrchST.PeopleIcon $inputPe={inputPe}/>
+                    <ResrchST.SelectZone onClick={PemHandler}>
+                        희망 응답자 수 <br/>
+                        <ResrchST.FlexZone>
+                            {pemOpen === true ?
+                            <ResrchST.DropDownOpen>
+                                {people} <SVG name='Close' size='12'/>
+                            </ResrchST.DropDownOpen>
+                            :
+                            <ResrchST.DropDown>
+                                {people} <SVG name='Open' size='12'/>
+                            </ResrchST.DropDown>
+                            }
+                            명
+                        </ResrchST.FlexZone>
                         {pemOpen === true ?
                             <ResrchST.Ul>
-                                <ResrchST.Li onClick={()=>{setPeople(10)}}> 10 명 </ResrchST.Li>
-                                <ResrchST.Li onClick={()=>{setPeople(15)}}> 15 명 </ResrchST.Li>
-                                <ResrchST.Li onClick={()=>{setPeople(20)}}> 20 명 </ResrchST.Li>
-                                <ResrchST.Li onClick={()=>{setPeople(25)}}> 25 명 </ResrchST.Li>
-                                <ResrchST.Li onClick={()=>{setPeople(30)}}> 30 명 </ResrchST.Li>
-                                <ResrchST.Li onClick={()=>{setPeople(35)}}> 35 명 </ResrchST.Li>
-                                <ResrchST.Li onClick={()=>{setPeople(40)}}> 40 명 </ResrchST.Li>
-                                <ResrchST.Li onClick={()=>{setPeople(45)}}> 45 명 </ResrchST.Li>
-                                <ResrchST.Li onClick={()=>{setPeople(50)}}> 50 명 </ResrchST.Li>
-                                <ResrchST.Li onClick={()=>{setPeople(55)}}> 55 명 </ResrchST.Li>
-                                <ResrchST.Li onClick={()=>{setPeople(60)}}> 60 명 </ResrchST.Li>
-                                <ResrchST.Li onClick={()=>{setPeople(65)}}> 65 명 </ResrchST.Li>
-                                <ResrchST.Li onClick={()=>{setPeople(70)}}> 70 명 </ResrchST.Li>
-                                <ResrchST.Li onClick={()=>{setPeople(75)}}> 75 명 </ResrchST.Li>
-                                <ResrchST.Li onClick={()=>{setPeople(80)}}> 80 명 </ResrchST.Li>
-                                <ResrchST.Li onClick={()=>{setPeople(85)}}> 85 명 </ResrchST.Li>
-                                <ResrchST.Li onClick={()=>{setPeople(90)}}> 90 명 </ResrchST.Li>
-                                <ResrchST.Li onClick={()=>{setPeople(95)}}> 95 명 </ResrchST.Li>
-                                <ResrchST.Li onClick={()=>{setPeople(100)}}> 100 명 </ResrchST.Li>
+                                <ResrchST.Li onClick={()=>{setPeople(10)}}> 10 </ResrchST.Li>
+                                <ResrchST.Li onClick={()=>{setPeople(15)}}> 15 </ResrchST.Li>
+                                <ResrchST.Li onClick={()=>{setPeople(20)}}> 20 </ResrchST.Li>
+                                <ResrchST.Li onClick={()=>{setPeople(25)}}> 25 </ResrchST.Li>
+                                <ResrchST.Li onClick={()=>{setPeople(30)}}> 30 </ResrchST.Li>
+                                <ResrchST.Li onClick={()=>{setPeople(35)}}> 35 </ResrchST.Li>
+                                <ResrchST.Li onClick={()=>{setPeople(40)}}> 40 </ResrchST.Li>
+                                <ResrchST.Li onClick={()=>{setPeople(45)}}> 45 </ResrchST.Li>
+                                <ResrchST.Li onClick={()=>{setPeople(50)}}> 50 </ResrchST.Li>
+                                <ResrchST.Li onClick={()=>{setPeople(55)}}> 55 </ResrchST.Li>
+                                <ResrchST.Li onClick={()=>{setPeople(60)}}> 60 </ResrchST.Li>
+                                <ResrchST.Li onClick={()=>{setPeople(65)}}> 65 </ResrchST.Li>
+                                <ResrchST.Li onClick={()=>{setPeople(70)}}> 70 </ResrchST.Li>
+                                <ResrchST.Li onClick={()=>{setPeople(75)}}> 75 </ResrchST.Li>
+                                <ResrchST.Li onClick={()=>{setPeople(80)}}> 80 </ResrchST.Li>
+                                <ResrchST.Li onClick={()=>{setPeople(85)}}> 85 </ResrchST.Li>
+                                <ResrchST.Li onClick={()=>{setPeople(90)}}> 90 </ResrchST.Li>
+                                <ResrchST.Li onClick={()=>{setPeople(95)}}> 95 </ResrchST.Li>
+                                <ResrchST.Li onClick={()=>{setPeople(100)}}> 100 </ResrchST.Li>
                             </ResrchST.Ul> : ''
                         }
-                    </ResrchST.DropDown>
+                    </ResrchST.SelectZone>
                 </ResrchST.FormBox>
 
                 <ResrchST.FormBox>
-                    <ResrchST.FormTitle>
-                        1인당 부여 포인트
-                        <ResrchST.FormDetail>
-                            참여자 1명에게 몇 포인트를 드릴까요?
-                        </ResrchST.FormDetail>
-                    </ResrchST.FormTitle>
-                    <ResrchST.DropDown onClick={PomHandler}>
-                        <ResrchST.LooksLikeInput onClick={()=>{setPomOpen(true);}}>
-                            {point} P
-                            <SVG
-                                name='Open'
-                                size='10'
-                                color='var(--grey-normal)'/>
-                        </ResrchST.LooksLikeInput>
+                    <ResrchST.PointIcon $inputPo={inputPo}/>
+                    <ResrchST.SelectZone onClick={PomHandler}>
+                        한 명당 <br/>
+                        <ResrchST.FlexZone>
+                        {pomOpen === true ?
+                        <ResrchST.DropDown onClick={()=>{setPomOpen(true);}}>
+                            {point}
+                            <SVG name='Open' size='12'/>
+                        </ResrchST.DropDown>
+                        :
+                        <ResrchST.DropDown onClick={()=>{setPomOpen(true);}}>
+                            {point}
+                            <SVG name='Open' size='12'/>
+                        </ResrchST.DropDown>
+                        }
+                        포인트 씩 제공
+                        </ResrchST.FlexZone>
                         {pomOpen === true ?
                             <ResrchST.Ul>
-                                <ResrchST.Li onClick={()=>{setPoint(100)}}> 100 P </ResrchST.Li>
-                                <ResrchST.Li onClick={()=>{setPoint(150)}}> 150 P </ResrchST.Li>
-                                <ResrchST.Li onClick={()=>{setPoint(200)}}> 200 P </ResrchST.Li>
-                                <ResrchST.Li onClick={()=>{setPoint(250)}}> 250 P </ResrchST.Li>
-                                <ResrchST.Li onClick={()=>{setPoint(300)}}> 300 P </ResrchST.Li>
-                                <ResrchST.Li onClick={()=>{setPoint(350)}}> 350 P </ResrchST.Li>
-                                <ResrchST.Li onClick={()=>{setPoint(400)}}> 400 P </ResrchST.Li>
-                                <ResrchST.Li onClick={()=>{setPoint(450)}}> 450 P </ResrchST.Li>
-                                <ResrchST.Li onClick={()=>{setPoint(500)}}> 500 P </ResrchST.Li>
-                                <ResrchST.Li onClick={()=>{setPoint(550)}}> 550 P </ResrchST.Li>
-                                <ResrchST.Li onClick={()=>{setPoint(600)}}> 600 P </ResrchST.Li>
+                                <ResrchST.Li onClick={()=>{setPoint(100)}}> 100 </ResrchST.Li>
+                                <ResrchST.Li onClick={()=>{setPoint(150)}}> 150 </ResrchST.Li>
+                                <ResrchST.Li onClick={()=>{setPoint(200)}}> 200 </ResrchST.Li>
+                                <ResrchST.Li onClick={()=>{setPoint(250)}}> 250 </ResrchST.Li>
+                                <ResrchST.Li onClick={()=>{setPoint(300)}}> 300 </ResrchST.Li>
+                                <ResrchST.Li onClick={()=>{setPoint(350)}}> 350 </ResrchST.Li>
+                                <ResrchST.Li onClick={()=>{setPoint(400)}}> 400 </ResrchST.Li>
+                                <ResrchST.Li onClick={()=>{setPoint(450)}}> 450 </ResrchST.Li>
+                                <ResrchST.Li onClick={()=>{setPoint(500)}}> 500 </ResrchST.Li>
+                                <ResrchST.Li onClick={()=>{setPoint(550)}}> 550 </ResrchST.Li>
+                                <ResrchST.Li onClick={()=>{setPoint(600)}}> 600 </ResrchST.Li>
+                                <ResrchST.Li onClick={()=>{setPoint(650)}}> 650 </ResrchST.Li>
+                                <ResrchST.Li onClick={()=>{setPoint(700)}}> 700 </ResrchST.Li>
+                                <ResrchST.Li onClick={()=>{setPoint(750)}}> 750 </ResrchST.Li>
+                                <ResrchST.Li onClick={()=>{setPoint(800)}}> 800 </ResrchST.Li>
+                                <ResrchST.Li onClick={()=>{setPoint(850)}}> 850 </ResrchST.Li>
+                                <ResrchST.Li onClick={()=>{setPoint(900)}}> 900 </ResrchST.Li>
+                                <ResrchST.Li onClick={()=>{setPoint(950)}}> 950 </ResrchST.Li>
+                                <ResrchST.Li onClick={()=>{setPoint(1000)}}> 1000 </ResrchST.Li>
                             </ResrchST.Ul> : ''
                         }
-                    </ResrchST.DropDown>
+                    </ResrchST.SelectZone>
                 </ResrchST.FormBox>
 
                 <ResrchST.FormBox>
-                    <ResrchST.FormTitle>
-                        설문 시작 날짜
-                        <ResrchST.FormDetailRed>
-                            검수 후 업로드까지 <br/>
-                            최소 12시간이 소요됩니다.
-                        </ResrchST.FormDetailRed>
-                    </ResrchST.FormTitle>
-                    <ResrchST.DateInput
-                        name="startDate"
-                        type="date"
-                        min="2024-03-01"
-                        onChange = {onInputChange}
-                        value={startDate}/>
+                    <ResrchST.StartDateIcon $inputSd={inputSd}/>
+                    <ResrchST.SelectZone>
+                        설문 시작일 <br/>
+                        <ResrchST.FlexZone>
+                            <ResrchST.DateInput
+                                name="startDate"
+                                type="date"
+                                min="2024-03-01"
+                                onChange = {onInputChange}
+                                value={startDate}/>
+                            부터
+                        </ResrchST.FlexZone>
+                    <ResrchST.Warning>
+                        검수 후 업로드까지 약 12시간 소요됩니다.
+                    </ResrchST.Warning>
+                    </ResrchST.SelectZone>
                 </ResrchST.FormBox>
 
                 <ResrchST.FormBox>
-                    <ResrchST.FormTitle>
-                        설문 마감 날짜
-                        <ResrchST.FormDetail>
-                            마감 시간은 23:59 입니다.
-                        </ResrchST.FormDetail>
-                    </ResrchST.FormTitle>
-                    <ResrchST.DateInput
-                        name="endDate"
-                        type="date"
-                        min="2024-03-01"
-                        onChange = {onInputChange}
-                        value={endDate}/>
+                    <ResrchST.EndDateIcon $inputEd={inputEd}/>
+                    <ResrchST.SelectZone>
+                        설문 마감일 <br/>
+                        <ResrchST.FlexZone>
+                            <ResrchST.DateInput
+                                name="endDate"
+                                type="date"
+                                min="2024-03-01"
+                                onChange = {onInputChange}
+                                value={endDate}/>
+                        까지
+                        </ResrchST.FlexZone>
+                    </ResrchST.SelectZone>
                 </ResrchST.FormBox>
 
                 <ResrchST.CalculationBtn ref={bottomRef}>
-                    <ResrchST.FormTitle>
                         결제 금액
-                        <ResrchST.FormDetail>
-                            설정값을 바꿔가며 <br/>
-                            금액을 조정해보세요 !
-                        </ResrchST.FormDetail>
-                    </ResrchST.FormTitle>
                     {finalPrice === (0 || NaN) ?
                         <ResrchST.PriceText>
                             원
@@ -278,14 +309,19 @@ export default function Step2() {
                     }
                 </ResrchST.CalculationBtn>
 
-                <ResrchST.RelaButtonZone>
-                    <ResrchST.CancelBtn onClick={()=>{setIsModal(true)}}>
-                        취소하기
+                {/* 고민중!!!!!!!!!!1 */}
+                <ResrchST.ButtonZone>
+                    <ResrchST.CancelBtn
+                        onClick={()=>{setIsModal(true)}}
+                    >
+                        돌아가기
                     </ResrchST.CancelBtn>
-                    <ResrchST.NextBtn onClick={nextHandler}>
+                    <ResrchST.CancelBtn
+                        onClick={nextHandler}
+                        $nextActi={nextActi}>
                         다음 단계
-                    </ResrchST.NextBtn>
-                </ResrchST.RelaButtonZone>
+                    </ResrchST.CancelBtn>
+                </ResrchST.ButtonZone>
             </SignST.ContentZone>
         </Layout>
         </>

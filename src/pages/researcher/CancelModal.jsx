@@ -8,17 +8,18 @@ export default function CancelModal({setIsModal}) {
 
     return (
         <ModalST.Overlay>
-            <ModalST.ModalBox>
-                <ModalST.Modalname>
-                    <SVG name='Caution' size='18' color='var(--red-caution)'/>
-                    <ModalST.ModalnameBlank/>
-                    페이지를 벗어나면 <br/>
-                    모든 입력 사항이 삭제됩니다.
-                </ModalST.Modalname>
-                <ModalST.Option onClick={()=>{setIsModal(false)}}>이어서 입력하기</ModalST.Option>
-                <ModalST.Option onClick={()=>{navigate(-1)}}>이전 단계로</ModalST.Option>
-                <ModalST.Cancel onClick={()=>{navigate('/')}}>게시 취소</ModalST.Cancel>
-            </ModalST.ModalBox>
+            <ModalST.ModalZone>
+                <ModalST.ModalIcon/>
+                <ModalST.ModalBox>
+                    <ModalST.Modalname>
+                        모든 입력사항을 삭제하고 <br/>
+                        이전 페이지로 이동하시겠습니까?
+                    </ModalST.Modalname>
+
+                    <ModalST.Option onClick={()=>{navigate(-1)}}>네</ModalST.Option>
+                    <ModalST.BetterOption onClick={()=>{setIsModal(false)}}>아니요</ModalST.BetterOption>
+                </ModalST.ModalBox>
+            </ModalST.ModalZone>
         </ModalST.Overlay>
     )
 }

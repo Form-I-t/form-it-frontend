@@ -1,12 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react';
+
 import * as SignST from './SignUpStyle';
+import * as MainST from '../main/MainPageStyle';
+import * as LoginST from '../login/LoginStyle';
 import Layout from '../../components/layout/Layout';
+import SVG from '../../components/imgs/SVG';
+
 import { PageContext } from '../../components/context/PageContext';
 import { useInput } from '../../hooks/useInput';
 import { useNavigate } from 'react-router-dom';
+
 import { signUp } from '../../shared/api/AuthAPI';
 import { emailDouble, nickDouble } from '../../shared/api/AuthAPI';
-import SVG from '../../components/imgs/SVG';
 
 export default function SignUp() {
 
@@ -202,13 +207,15 @@ export default function SignUp() {
 
     useEffect(() => {
         if(
-            (isEmailFail === false) &&
+            ((isEmailFail === false) &&
             (isPwFail === false) &&
             (isPwChkFail === false) &&
             (isNickFail === false)
+            )
+            && ((email && pw && pwCheck && nick) !== '')
         ) {setAllPass(true)}
         else {setAllPass(false)}
-    }, [isEmailFail, isPwFail, isPwChkFail, isNickFail]);
+    }, [isEmailFail, isPwFail, isPwChkFail, isNickFail, email, pw, pwCheck, nick]);
 
     return (
         <>
@@ -216,13 +223,17 @@ export default function SignUp() {
             <SignST.ContentZone>
 
                 {/* 문구 */}
-                <SignST.SignupGuide>
-                    <SignST.LogoText>한냥</SignST.LogoText> 에
-                </SignST.SignupGuide>
-                <SignST.NotLogoText>오신 것을 환영합니다 !</SignST.NotLogoText>
+                <SignST.GuideZone>
+                    <MainST.GuideText>
+                        <MainST.NickText>Formit&nbsp;</MainST.NickText> 에
+                    </MainST.GuideText>
+                    <MainST.GuideText>
+                        오신 것을 환영합니다 !
+                    </MainST.GuideText>
+                </SignST.GuideZone>    
 
                 {/* 이메일 */}
-                <SignST.InputBox
+                <LoginST.InputBox
                     name = "email"
                     type = 'text'
                     value = {email}
@@ -232,7 +243,7 @@ export default function SignUp() {
                 {isBeforeInputEm === true ? null : (
                     (isEmailFail === true) ? (
                     <SignST.CautionText>
-                        <SVG name='Caution' size='15' color='var(--red-caution)'/>
+                        <SVG name='Caution' size='15' color='var(--main-pink)'/>
                         {emCheckText}
                     </SignST.CautionText>
                     ) : (
@@ -244,7 +255,7 @@ export default function SignUp() {
                 )}
 
                 {/* 비밀번호 */}
-                <SignST.InputBox
+                <LoginST.InputBox
                     name = "pw"
                     type = 'password'
                     value = {pw}
@@ -254,7 +265,7 @@ export default function SignUp() {
                 {isBeforeInputPw === true ? null : (
                     (isPwFail === true) ? (
                     <SignST.CautionText>
-                        <SVG name='Caution' size='15' color='var(--red-caution)'/>
+                        <SVG name='Caution' size='15' color='var(--main-pink)'/>
                         {pwCheckText}
                     </SignST.CautionText>
                     ) : (
@@ -266,7 +277,7 @@ export default function SignUp() {
                 )}
 
                 {/* 비밀번호 확인 */}
-                <SignST.InputBox
+                <LoginST.InputBox
                     name = "pwCheck"
                     type = 'password'
                     value = {pwCheck}
@@ -276,7 +287,7 @@ export default function SignUp() {
                 {isBeforeInputPwChk === true ? null : (
                     (isPwChkFail === true) ? (
                     <SignST.CautionText>
-                        <SVG name='Caution' size='15' color='var(--red-caution)'/>
+                        <SVG name='Caution' size='15' color='var(--main-pink)'/>
                         {pwChkCheckText}
                     </SignST.CautionText>
                     ) : (
@@ -288,7 +299,7 @@ export default function SignUp() {
                 )}
 
                 {/* 닉네임 */}
-                <SignST.InputBox
+                <LoginST.InputBox
                     name = "nick"
                     type = "text"
                     maxLength= "6"
@@ -299,7 +310,7 @@ export default function SignUp() {
                 {isBeforeInputNick === true ? null : (
                     (isNickFail === true) ? (
                     <SignST.CautionText>
-                        <SVG name='Caution' size='15' color='var(--red-caution)'/>
+                        <SVG name='Caution' size='15' color='var(--main-pink)'/>
                         {nickCheckText}
                     </SignST.CautionText>
                     ) : (
@@ -313,12 +324,15 @@ export default function SignUp() {
                 {/* 회원가입 실패 */}
                 {(isCantSignIn === true) ? (
                     <SignST.CautionText>
-                        <SVG name='Caution' size='15' color='var(--red-caution)'/>
+                        <SVG name='Caution' size='15' color='var(--main-pink)'/>
                         오류가 발생하였습니다. 다시 시도해주세요 !
                     </SignST.CautionText>
                 ) : null}
 
-                <SignST.SubmitBtn focused={allPass === true ? 'allPassed':'unPassed'} onClick={SubmitHandler}>
+                <SignST.SubmitBtn
+                    onClick={SubmitHandler}
+                    disabled={allPass === false}
+                    >
                     가입하기
                 </SignST.SubmitBtn>
 
