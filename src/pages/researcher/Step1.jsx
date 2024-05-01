@@ -6,10 +6,11 @@ import * as ResrchST from './ResrchStyle';
 import * as SignST from '../signup/SignUpStyle';
 import * as MainST from '../main/MainPageStyle';
 import * as LoginST from '../login/LoginStyle';
+import SVG from '../../components/imgs/SVG';
 
 import Layout from '../../components/layout/Layout';
 import FormIcon from '../../components/imgs/researcher/FormIcon.png';
-import CancelModal from './CancelModal';
+import CheckModal from '../../components/modal/CheckModal';
 import CautionModal from '../../components/modal/CautionModal';
 
 import { PageContext } from '../../components/context/PageContext';
@@ -26,6 +27,7 @@ export default function Step1() {
     const [isBlank, setIsBlank] = useState(false);
     const [modalMsg, setModalMsg] = useState('입력사항을 확인해주세요.');
     const [ {formUrl}, onInputChange, resetInput ] = useInput({formUrl: ""});
+    const [btnActiv, setBtnActiv] = useState(false);
 
     const nextHandler = async() => {
         let Url = formUrl.replace(/ /g,"");
@@ -47,7 +49,17 @@ export default function Step1() {
                 resetInput();
             })
         }
-    }
+    };
+
+    useEffect(() => {
+        if (formUrl === "") {
+            setBtnActiv(false);
+        } else {
+            setTimeout(() => {
+                setBtnActiv(true);
+            }, 500)
+        }
+    }, [formUrl])
 
     useEffect(() => {
         setPage('step1');
@@ -58,7 +70,7 @@ export default function Step1() {
         <Layout>
         {/* 모달 */}
         {isModal === true ?
-        <CancelModal setIsModal={setIsModal}/> : <></>}
+        <CheckModal setIsModal={setIsModal}/> : <></>}
         {/* 빈칸경고모달 */}
         {isBlank === true ?
         <CautionModal setIsBlank={setIsBlank} modalMsg={modalMsg}/> : <></>}
@@ -68,7 +80,7 @@ export default function Step1() {
                 </ResrchST.PgZone>
 
                 <MainST.GuideText>
-                    설문받을&nbsp;<MainST.NickText>Google Form</MainST.NickText>의
+                    설문받을&nbsp;<MainST.NickText>구글 폼</MainST.NickText>의
                 </MainST.GuideText>
                 <MainST.GuideText>
                     <MainST.NickText>URL</MainST.NickText>을 입력해주세요.
@@ -80,14 +92,24 @@ export default function Step1() {
                     type = 'text'
                     value = {formUrl}
                     onChange = {onInputChange}
-                    placeholder = 'URL을 복붙해주세요 !'>
+                    placeholder = '링크를 입력해주세요 !'>
                 </LoginST.InputBox>
+
+                <ResrchST.CantBox>
+                    <b>지원 불가한 문항</b>
+                    <ResrchST.FlexZone>
+                    <SVG name='Cant'/> 이미지, 동영상이 첨부된 문항
+                    </ResrchST.FlexZone>
+                    <ResrchST.FlexZone>
+                    <SVG name='Cant'/> 선형배율, 객관식, 체크박스, 그리드 문항
+                    </ResrchST.FlexZone>
+                </ResrchST.CantBox>
 
                 <ResrchST.ButtonZone>
                     <ResrchST.CancelBtn onClick={()=>{setIsModal(true)}}>
                         돌아가기
                     </ResrchST.CancelBtn>
-                    <ResrchST.NextBtn onClick={nextHandler}>
+                    <ResrchST.NextBtn $btnActiv={btnActiv} onClick={nextHandler}>
                         다음으로
                     </ResrchST.NextBtn>
                 </ResrchST.ButtonZone>

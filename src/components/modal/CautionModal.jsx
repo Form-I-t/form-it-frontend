@@ -1,17 +1,20 @@
 import * as ModalST from './ModalStyle'
-import SVG from '../imgs/SVG'
 
 export default function CautionModal({setIsBlank, modalMsg}) {
 
     return (
+
         <ModalST.Overlay>
-            <ModalST.ModalBox>
+        <ModalST.ModalZone>
+            <ModalST.ModalIcon/>
+            <ModalST.CauModalBox>
                 <ModalST.Modalname>
-                    <SVG name='Caution' size='18' color='var(--red-caution)'/>
                     {modalMsg}
                 </ModalST.Modalname>
-                <ModalST.Option onClick={()=>{setIsBlank(false)}}>확인</ModalST.Option>
-            </ModalST.ModalBox>
+
+                <ModalST.CauOption onClick={()=>{setIsBlank(false)}}>확인</ModalST.CauOption>
+            </ModalST.CauModalBox>
+        </ModalST.ModalZone>
         </ModalST.Overlay>
     )
 }

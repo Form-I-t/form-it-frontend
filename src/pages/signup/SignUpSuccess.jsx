@@ -23,6 +23,7 @@ export default function SignUpSuccess() {
                 <SignST.SuccessZone>
                     {/* 문구 */}
                     <MainST.NickText>감사합니다!</MainST.NickText>
+                    <div style={{ height: '8px'}}/>
                     <SignST.SuccessText>회원가입이 완료되었습니다.</SignST.SuccessText>
                     {/* 버튼 */}
                     <SignST.SuccessBtn onClick={() => { navigate('/login'); }}>

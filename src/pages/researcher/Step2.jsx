@@ -8,7 +8,7 @@ import * as SignST from '../signup/SignUpStyle';
 import * as MainST from '../main/MainPageStyle';
 
 import Layout from '../../components/layout/Layout';
-import CancelModal from './CancelModal';
+import CheckModal from '../../components/modal/CheckModal';
 import SVG from '../../components/imgs/SVG';
 import CautionModal from '../../components/modal/CautionModal';
 
@@ -38,7 +38,7 @@ export default function Step2() {
     const [inputPo, setInputPo] = useState(false);
     const [inputSd, setInputSd] = useState(false);
     const [inputEd, setInputEd] = useState(false);
-    const [nextActi, setNextActi] = useState(false);
+    const [btnActiv, setBtnActiv] = useState(false);
 
     const [ { startDate, endDate },
             onInputChange,
@@ -72,7 +72,7 @@ export default function Step2() {
     }
 
     const nextHandler = async() => {
-        if ( (startDate === "") || (endDate === "") ) {
+        if ( (startDate === "") || (endDate === "") || (finalPrice === 0)) {
             setModalMsg('입력사항을 확인해주세요.');
             setIsBlank(true);
         } else {
@@ -99,8 +99,7 @@ export default function Step2() {
     useEffect(() => {
         if (people !== 0) {setInputPe(true)};
         if (point !== 0) {setInputPo(true)};
-        if (startDate !== '') {setInputSd(true)};
-        if (endDate !== '') {setInputEd(true)};
+        if ((startDate && endDate) !== '') {setInputSd(true); setInputEd(true);};
 
         //결제 금액 계산
         if ( (startDate === "") || (endDate === "") ) {
@@ -134,7 +133,7 @@ export default function Step2() {
             else if (decimal <= 14) { week = 14; }
             else if (decimal <= 15) { week = 15; }
             else if (decimal <= 16) { week = 16; }
-            else { week = NaN; }
+            else { week = NaN; };
 
             //금액 산정
             if (week <= 2) {
@@ -148,11 +147,8 @@ export default function Step2() {
                 setFinalPrice(0);
             } else {
                 setFinalPrice(price);
-            }
-
-            //다음버튼 활성화
-            if ( finalPrice !== (0 || NaN) ) {
-                setNextActi(true);
+                //다음버튼 활성화
+                setBtnActiv(true);
             }
         }
     }, [people, point, startDate, endDate]);
@@ -162,7 +158,7 @@ export default function Step2() {
         <Layout>
         {/* 모달 */}
         {isModal === true ?
-        <CancelModal setIsModal={setIsModal}/> : <></>}
+        <CheckModal setIsModal={setIsModal}/> : <></>}
         {/* 빈칸경고모달 */}
         {isBlank === true ?
         <CautionModal setIsBlank={setIsBlank} modalMsg={modalMsg}/> : <></>}
@@ -264,8 +260,9 @@ export default function Step2() {
 
                 <ResrchST.FormBox>
                     <ResrchST.StartDateIcon $inputSd={inputSd}/>
+
                     <ResrchST.SelectZone>
-                        설문 시작일 <br/>
+                        설문 기간 <br/>
                         <ResrchST.FlexZone>
                             <ResrchST.DateInput
                                 name="startDate"
@@ -275,16 +272,6 @@ export default function Step2() {
                                 value={startDate}/>
                             부터
                         </ResrchST.FlexZone>
-                    <ResrchST.Warning>
-                        검수 후 업로드까지 약 12시간 소요됩니다.
-                    </ResrchST.Warning>
-                    </ResrchST.SelectZone>
-                </ResrchST.FormBox>
-
-                <ResrchST.FormBox>
-                    <ResrchST.EndDateIcon $inputEd={inputEd}/>
-                    <ResrchST.SelectZone>
-                        설문 마감일 <br/>
                         <ResrchST.FlexZone>
                             <ResrchST.DateInput
                                 name="endDate"
@@ -292,35 +279,37 @@ export default function Step2() {
                                 min="2024-03-01"
                                 onChange = {onInputChange}
                                 value={endDate}/>
-                        까지
+                            까지
                         </ResrchST.FlexZone>
-                    </ResrchST.SelectZone>
-                </ResrchST.FormBox>
 
-                <ResrchST.CalculationBtn ref={bottomRef}>
-                        결제 금액
-                    {finalPrice === (0 || NaN) ?
-                        <ResrchST.PriceText>
-                            원
-                        </ResrchST.PriceText> :
-                        <ResrchST.PriceText>
-                            {finalPrice} 원
-                        </ResrchST.PriceText>
-                    }
-                </ResrchST.CalculationBtn>
+                    <ResrchST.Warning>
+                        검수 후 업로드까지 약 12시간 소요됩니다.
+                    </ResrchST.Warning>
+
+                    </ResrchST.SelectZone>
+
+
+                </ResrchST.FormBox>
 
                 {/* 고민중!!!!!!!!!!1 */}
                 <ResrchST.ButtonZone>
+                    <ResrchST.CalculationBtn ref={bottomRef}>
+                        결제 금액은
+                        <ResrchST.PriceText>
+                        {finalPrice === (0 || NaN) ? 0 : finalPrice.toLocaleString('ko-KR')}
+                        </ResrchST.PriceText>
+                        원 입니다.
+                    </ResrchST.CalculationBtn>
+
                     <ResrchST.CancelBtn
-                        onClick={()=>{setIsModal(true)}}
-                    >
+                        onClick={()=>{setIsModal(true)}}>
                         돌아가기
                     </ResrchST.CancelBtn>
-                    <ResrchST.CancelBtn
+                    <ResrchST.NextBtn
                         onClick={nextHandler}
-                        $nextActi={nextActi}>
-                        다음 단계
-                    </ResrchST.CancelBtn>
+                        $btnActiv={btnActiv}>
+                        다음으로
+                    </ResrchST.NextBtn>
                 </ResrchST.ButtonZone>
             </SignST.ContentZone>
         </Layout>

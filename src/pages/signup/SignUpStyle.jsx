@@ -32,14 +32,6 @@ export const GuideZone = styled.div`
 `;
 
 //삭제 예정 !!!!
-export const LogoText = styled.div`
-  margin-right: 8px;
-  color: var(--blue-normal);
-  font-size: var(--font-huge);
-  font-weight: var(--weight-semi-bold);
-`;
-
-//삭제 예정 !!!!
 export const InputBox = styled.input`
   position: relative;
   width: 100%;

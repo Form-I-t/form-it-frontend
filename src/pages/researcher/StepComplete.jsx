@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import * as SignST from '../signup/SignUpStyle';
+import * as MainST from '../main/MainPageStyle';
 import Layout from '../../components/layout/Layout';
 import { PageContext } from '../../components/context/PageContext';
 
@@ -40,20 +41,22 @@ export default function StepComplete() {
     return (
         <>
         <Layout>
-            <SignST.SuccessZone>
-                {/* 문구 */}
-                <SignST.LogoText> 감사합니다! </SignST.LogoText>
-                <SignST.SuccessText> 설문 게시가 요청되었습니다. </SignST.SuccessText>
-                {/* 버튼 */}
-                <SignST.SuccessBtn
-                    //참여 페이지로 이동
-                    //onClick={() => { navigate('/login'); }}
-                >
-                    설문 참여하기
-                </SignST.SuccessBtn>
-            </SignST.SuccessZone>
+            <SignST.ContentZone>
+                <SignST.SuccessZone>
+                    {/* 문구 */}
+                    <MainST.NickText>감사합니다!</MainST.NickText>
+                    <div style={{ height: '8px'}}/>
+                    <SignST.SuccessText>접수가 완료되었습니다.</SignST.SuccessText>
+                    {/* 버튼 */}
+                    <SignST.SuccessBtn
+                     //참여 페이지로 이동
+                     //onClick={() => { navigate('/참여'); }}
+                    >
+                        설문 참여하기
+                    </SignST.SuccessBtn>
+                </SignST.SuccessZone>
+            </SignST.ContentZone>
         </Layout>
         </>
     );
-
 }

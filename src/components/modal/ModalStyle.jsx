@@ -36,11 +36,25 @@ export const ModalIcon = styled.div`
   background: var(--main-white);
 `;
 
-//높이 고정해놨음!
+//높이 고정!
 export const ModalBox = styled.div`
   position: relative;
   width: 100%;
   height: 210px;
+  padding: 16px;
+
+  background: var(--level-two);
+  border-radius: 16px;
+
+  text-align: center;
+  font-size: var(--font-small);
+`;
+
+//높이 고정!
+export const CauModalBox = styled.div`
+  position: relative;
+  width: 100%;
+  height: 145px;
   padding: 16px;
 
   background: var(--level-two);
@@ -73,6 +87,21 @@ export const Option = styled.div`
   color: var(--main-green);
   font-weight: var(--weight-bold);
   border: 1px solid var(--main-green);
+`;
+
+export const CauOption = styled.div`
+  width: 100%;
+  height: 40px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 10px;
+
+  color: var(--main-black);
+  font-weight: var(--weight-bold);
+  background-color: var(--main-pink);
 `;
 
 export const BetterOption = styled.div`

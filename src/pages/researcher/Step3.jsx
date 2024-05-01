@@ -8,11 +8,11 @@ import * as SignST from '../signup/SignUpStyle';
 import * as MainST from '../main/MainPageStyle';
 
 import Layout from '../../components/layout/Layout';
-import CancelModal from './CancelModal';
+import CancelModal from '../../components/modal/CheckModal';
 import CautionModal from '../../components/modal/CautionModal';
 import SVG from '../../components/imgs/SVG';
 import 산업 from '../../components/imgs/bank/산업.png'
-import 새마을 from '../../components/imgs/bank/새마을.png'
+import 새마을금고 from '../../components/imgs/bank/새마을.png'
 import 우리 from '../../components/imgs/bank/우리.png'
 
 import { PageContext } from '../../components/context/PageContext';
@@ -27,13 +27,15 @@ export default function Step3() {
 
     const [isModal, setIsModal] = useState(false);
     const [isBlank, setIsBlank] = useState(false);
-    const [modalMsg, setModalMsg] = useState('입력사항을 확인해주세요.');
+    const [modalMsg, setModalMsg] = useState('입력사항을 확인해주세요 !');
     const [bankName, setBankName] = useState('은행 선택');
     const [DdOpen, setDdOpen] = useState(false);
     const [isCopied, setIsCopied] = useState(false);
     const [confirmMsg, setConfirmMsg] = useState(false);
+    const [btnActiv, setBtnActiv] = useState(false);
 
     const surveyId = useSelector((state) => state.survey.id);
+    const price = useSelector((state) => state.survey.price);
 
     const [ { accountOwner, account },
             onInputChange,
@@ -64,11 +66,19 @@ export default function Step3() {
         setIsCopied(true);
     }
 
+    //체크박스 인식
+    const confirmHandler = () => {
+        //체크박스 element 찾기
+        const checkbox = document.getElementById('confirmChk');
+        //checked 속성 인식하는 변수
+        const is_checked = checkbox.checked;
+        //접수버튼 활성화
+        is_checked === true ? setBtnActiv(true) : setBtnActiv(false);
+    }
 
     const nextHandler = async() => {
-        if ((accountOwner||account === "") ||
-            (bankName === '은행 선택')) {
-            setModalMsg('입력사항을 확인해주세요.');
+        if (btnActiv === false) {
+            setModalMsg('입력사항을 확인해주세요 !');
             setIsBlank(true);
         } else {
             __postStep3({ surveyId, accountOwner, account })
@@ -86,19 +96,6 @@ export default function Step3() {
             })                
         }
     }
-
-    function confirmHandler() {
-  
-        // 1. checkbox element를 찾습니다.
-        const checkbox = document.getElementById('confirmChk');
-      
-        // 2. checked 속성을 체크합니다.
-        const is_checked = checkbox.checked;
-      
-        // 3. 결과를 출력합니다.
-        document.getElementById('result').innerText = is_checked;
-        
-      }
 
     //confirmMsg 체크박스
     useEffect(() => {
@@ -136,25 +133,26 @@ export default function Step3() {
                     <MainST.NickText>송금&nbsp;</MainST.NickText>해주세요.
                 </MainST.GuideText>
 
-                <ResrchST.FinalPrice>
-                        결제 금액
-                    <ResrchST.PriceText>
-                        18,000 원
-                    </ResrchST.PriceText>
-                </ResrchST.FinalPrice>
+                <ResrchST.Copied $isCopied={isCopied}>
+                    계좌번호가 복사되었어요 !
+                </ResrchST.Copied>
 
                 <ResrchST.AccountZone onClick={CopyHandler}>
                     <ResrchST.FlexZone2>
-                        <SVG name='카카오'/>
-                        카카오뱅크 79799514279
+                        <SVG name='카카오뱅크'/>
+                        카카오뱅크 79799514279 배진성
                     </ResrchST.FlexZone2>
                     <SVG name='Copy'/>
                 </ResrchST.AccountZone>
-                {isCopied === true ?
-                    <ResrchST.Warning>
-                        &nbsp;&nbsp;&nbsp;계좌번호가 복사되었어요 !
-                    </ResrchST.Warning> : ''
-                }
+
+                <ResrchST.FinalPrice>
+                        결제 금액
+                        <div style={{ height: '4px'}}/>
+                    <ResrchST.PriceText>
+                        {/* 오류 방지 주석 */}
+                        {price.toLocaleString('ko-KR')} 원
+                    </ResrchST.PriceText>
+                </ResrchST.FinalPrice>
 
                 <ResrchST.TitleText>
                     입금자 정보
@@ -189,7 +187,7 @@ export default function Step3() {
                                 <SVG name='토스'/>
                                 토스 </ResrchST.Li2>
                             <ResrchST.Li2 onClick={()=>{setBankName('새마을금고')}}>
-                                <ResrchST.BankIcon src={새마을}/>
+                                <ResrchST.BankIcon src={새마을금고}/>
                                 새마을금고 </ResrchST.Li2>
                             <ResrchST.Li2 onClick={()=>{setBankName('산업')}}>
                                 <ResrchST.BankIcon src={산업}/>
@@ -238,14 +236,28 @@ export default function Step3() {
                     {DdOpen === true ?
                         <ResrchST.DropDownOpen2>
                             <ResrchST.FlexZone2>
-                                <SVG name={bankName}/> {bankName}
+                            {bankName === '산업' ?
+                                <ResrchST.BankIcon src={산업}/> :
+                                bankName === '새마을금고' ?
+                                <ResrchST.BankIcon src={새마을금고}/> :
+                                bankName === '우리' ?
+                                <ResrchST.BankIcon src={우리}/> :
+                                <SVG name={bankName}/>
+                            } {bankName}
                             </ResrchST.FlexZone2>
                             <SVG name='Open' size='12'/>
                         </ResrchST.DropDownOpen2>
                         :
                         <ResrchST.DropDown2>
                             <ResrchST.FlexZone2>
-                                <SVG name={bankName}/> {bankName}
+                            {bankName === '산업' ?
+                                <ResrchST.BankIcon src={산업}/> :
+                                bankName === '새마을금고' ?
+                                <ResrchST.BankIcon src={새마을금고}/> :
+                                bankName === '우리' ?
+                                <ResrchST.BankIcon src={우리}/> :
+                                <SVG name={bankName}/>
+                            } {bankName}
                             </ResrchST.FlexZone2>
                             <SVG name='Close' size='12'/>
                         </ResrchST.DropDown2>
@@ -271,14 +283,12 @@ export default function Step3() {
                 </ResrchST.FlexZone>
 
                 <ResrchST.Warning>
-                    위 계좌로 환불이 진행됩니다.
+                    환불 시 위 계좌를 사용합니다.
                 </ResrchST.Warning>
 
                 {confirmMsg === true ?
                     <ResrchST.ConfirmZone>
-                        설문 접수 전 입금을 완료하셨나요?
-                        <pre id='result'>
-                        </pre>
+                        확인 후 게시까지 1~2일 소요됩니다 :)
                         <input id="confirmChk" type="checkbox" onClick={confirmHandler}/>
                     </ResrchST.ConfirmZone>
                     : ''
@@ -289,8 +299,8 @@ export default function Step3() {
                     <ResrchST.CancelBtn onClick={()=>{setIsModal(true)}}>
                         돌아가기
                     </ResrchST.CancelBtn>
-                    <ResrchST.NextBtn onClick={nextHandler}>
-                        송금 완료
+                    <ResrchST.NextBtn $btnActiv={btnActiv} onClick={nextHandler}>
+                        접수하기
                     </ResrchST.NextBtn>
                 </ResrchST.ButtonZone>
             </SignST.ContentZone>

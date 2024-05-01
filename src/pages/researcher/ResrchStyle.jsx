@@ -114,11 +114,31 @@ export const SmallText = styled.div`
 //폼 아이콘 들어오면 삭제예정 !!!!
 export const FormIcon = styled.img`
   width: 45px;
-  display: flex;
   margin: auto;
+
+  display: flex;
   align-items: center;
-  margin-top: 25%;
-  margin-bottom: 8%;
+  justify-content: center;
+
+  margin-top: 80px;
+  margin-bottom: 12px;
+`;
+
+export const CantBox = styled.div`
+  width: fit-content;
+  padding: 14px 18px;
+  margin: auto;
+  margin-top: 100px;
+
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  background-color: var(--level-one);
+  font-size: var(--font-small);
+
+  border: 1px solid var(--main-green);
+  border-radius: 12px;
 `;
 
 export const ButtonZone = styled.div`
@@ -137,9 +157,9 @@ export const ButtonZone = styled.div`
 export const CancelBtn = styled.div`
   width: 47%;
 
-  color: ${(props) => (props.$nextActi === true ? 'var(--main-black)' : 'var(--grey-normal)')};
+  color: var(--grey-normal);
   border-radius: 12px;
-  background-color: ${(props) => (props.$nextActi === true ? 'var(--main-green)' : 'var(--level-one)')};
+  background-color: var(--level-one);
 
   display: flex;
   align-items: center;
@@ -151,9 +171,9 @@ export const CancelBtn = styled.div`
 export const NextBtn = styled.div`
   width: 47%;
 
-  color: var(--main-black);
+  color: ${(props) => (props.$btnActiv === true ? 'var(--main-black)' : 'var(--grey-normal)')};
   border-radius: 12px;
-  background-color: var(--main-green);
+  background-color: ${(props) => (props.$btnActiv === true ? 'var(--main-green)' : 'var(--level-one)')};
 
   display: flex;
   align-items: center;
@@ -245,8 +265,6 @@ export const DropDown2 = styled.div`
 
   border-radius: 12px;
   background-color: var(--level-one);
-  
-  color: var(--main-white);
   font-weight: var(--weight-regular);
 `;
 
@@ -274,13 +292,11 @@ export const DropDownOpen2 = styled.div`
 
   border-radius: 0 0 12px 12px;
   background-color: var(--level-one);
-
-  color: var(--main-white);
-  font-weight: var(--weight-regular);
 `;
 
 export const SelectZone = styled.div`
   font-weight: var(--weight-semi-bold);
+  color: var(--main-white);
 `;
 
 export const Ul = styled.div`
@@ -302,7 +318,7 @@ export const Ul2 = styled.ul`
   position: absolute;
   width: 140px;
   height: 340px;
-  top: 85px;
+  top: 72px;
 
   overflow: scroll;
   
@@ -384,30 +400,43 @@ export const Warning = styled.div`
   color: var(--main-green);
 `;
 
+export const Copied = styled.div`
+  margin: 40px 0 8px 0;
+  display: flex;
+  justify-content: end;
+
+  font-weight: var(--weight-regular);
+  font-size: var(--font-micro);
+  color: var(--main-green);
+  visibility: ${(props) => (props.$isCopied === true ? 'visible' : 'hidden')};
+`;
+
 export const CalculationBtn = styled.div`
-  padding: 20px;
-  margin-top: 24px;
-  margin-bottom: 32px;
+  position: absolute;
+  width: 100%;
+  padding: 8px;
+  bottom: 80px;
+  gap: 16px;
 
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 
-  border-radius: 12px;
-  background-color: var(--blue-blur-light);
-  color: var(--blue-normal);
+  background-color: var(--main-green);
+  color: var(--main-black);
+  font-weight: var(--weight-semi-bold);
+  font-size: 18px;
 `;
 
 export const PriceText = styled.div`
-  margin-top: 4px;
-  font-size: 28px;
-  font-weight: var(--weight-semi-bold);
+  font-size: 26px;
   white-space: nowrap;
+  font-weight: var(--weight-semi-bold);
 `;
 
 export const FinalPrice = styled.div`
-  margin-top: 60px;
-  padding: 15px 0 15px 20px;
+  margin: 12px 0 36px 0;
+  padding: 14px 0 14px 20px;
 
   border-radius: 12px;
   background-color: var(--main-green);
@@ -419,7 +448,6 @@ export const FinalPrice = styled.div`
 
 export const AccountZone = styled.div`
   padding: 12px 20px 12px 20px;
-  margin: 18px 0 0 0;
 
   display: flex;
   align-items: center;
@@ -428,10 +456,11 @@ export const AccountZone = styled.div`
   border-radius: 12px;
   background-color: var(--level-one);
   white-space: nowrap;
+  font-weight: var(--weight-regular);
 `;
 
 export const TitleText = styled.div`
-  margin: 36px 0 20px 0;
+  margin: 16px 0 14px 0;
   font-size: var(--font-medium);
   font-weight: var(--weight-regular);
 `;
@@ -462,15 +491,18 @@ export const BankIcon = styled.img`
 `;
 
 export const ConfirmZone = styled.div`
+  position: absolute;
+  width: 100%;
   height: 36px;
-  margin-top: 20px;
-  padding-left: 14px;
+  bottom: 92px;
+  padding: 16px;
 
   display: flex;
   align-items: center;
+  justify-content: space-between;
 
   border-radius: 8px;
   background-color: var(--main-green);
   color: var(--main-black);
-  font-weight: var(--weight-regular);
+  font-weight: var(--weight-semi-bold);
 `;
