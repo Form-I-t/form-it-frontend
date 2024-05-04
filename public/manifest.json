@@ -1,27 +1,27 @@
 {
-  "short_name": "한냥",
-  "name": "한냥",
+  "short_name": "폼잇",
+  "name": "폼잇",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "mainLogo.png",
       "sizes": "128x128 64x64 32x32 24x24 16x16",
       "type": "image/x-icon",
       "purpose": "any"
     },
     {
-      "src": "logo192.png",
+      "src": "mainLogo.png",
       "type": "image/png",
       "sizes": "192x192",
       "purpose": "any"
     },
     {
-      "src": "logo512.png",
+      "src": "mainLogo.png",
       "type": "image/png",
       "sizes": "512x512",
       "purpose": "maskable"
     },
     {
-      "src": "logo1024.png",
+      "src": "mainLogo.png",
       "type": "image/png",
       "sizes": "1024x1024",
       "purpose": "maskable"
@@ -31,9 +31,9 @@
   "display": "standalone",
   "display_override": ["standalone"],
   "orientation": "portrait",
-  "theme_color": "#00457E",
-  "background_color": "#00457E",
-  "description": "한냥",
+  "theme_color": "#00FD89",
+  "background_color": "#00FD89",
+  "description": "폼잇",
   "lang": "ko",
   "dir": "ltr",
   "categories": ["research", "social"]
