@@ -56,6 +56,19 @@ export const saveChoice = async (choices) => {
     return saveChoicesList;
 };
 
+const initialState = {
+    //step: { data: {}, loading: false, error: null, fulfilled: false },
+    id: null,
+    googleFormLink: null,
+    participantCount: null,
+    rewardPoints: null,
+    deadline: null,
+    accountHolderName: null,
+    account: null,
+    createdAt: null,
+    price: null,
+  };
+
 export const questionSlice = createSlice({
     name: 'questions', //모듈의 이름
     initialState,
@@ -77,4 +90,4 @@ export const questionSlice = createSlice({
     //     };
     //   },
     },
-  });s
+  });
