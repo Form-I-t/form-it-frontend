@@ -11,9 +11,9 @@ import Layout from '../../components/layout/Layout';
 import CancelModal from '../../components/modal/CheckModal';
 import CautionModal from '../../components/modal/CautionModal';
 import SVG from '../../components/imgs/SVG';
-import 산업 from '../../components/imgs/bank/산업.png'
-import 새마을금고 from '../../components/imgs/bank/새마을.png'
-import 우리 from '../../components/imgs/bank/우리.png'
+import SanUp from '../../components/imgs/bank/SanUp.png';
+import SaeMaUl from '../../components/imgs/bank/SaeMaUl.png';
+import WooRi from '../../components/imgs/bank/WooRi.png';
 
 import { PageContext } from '../../components/context/PageContext';
 import { useInput } from '../../hooks/useInput';
@@ -175,7 +175,7 @@ export default function Step3() {
                                 <SVG name='농협'/>
                                 농협 </ResrchST.Li2>
                             <ResrchST.Li2 onClick={()=>{setBankName('우리')}}>
-                                <ResrchST.BankIcon src={우리}/>
+                                <ResrchST.BankIcon src={WooRi}/>
                                 우리 </ResrchST.Li2>
                             <ResrchST.Li2 onClick={()=>{setBankName('하나')}}>
                                 <SVG name='하나'/>
@@ -187,10 +187,10 @@ export default function Step3() {
                                 <SVG name='토스'/>
                                 토스 </ResrchST.Li2>
                             <ResrchST.Li2 onClick={()=>{setBankName('새마을금고')}}>
-                                <ResrchST.BankIcon src={새마을금고}/>
+                                <ResrchST.BankIcon src={SaeMaUl}/>
                                 새마을금고 </ResrchST.Li2>
                             <ResrchST.Li2 onClick={()=>{setBankName('산업')}}>
-                                <ResrchST.BankIcon src={산업}/>
+                                <ResrchST.BankIcon src={SanUp}/>
                                 산업 </ResrchST.Li2>
                             <ResrchST.Li2 onClick={()=>{setBankName('수협')}}>
                                 <SVG name='수협'/>
@@ -237,11 +237,11 @@ export default function Step3() {
                         <ResrchST.DropDownOpen2>
                             <ResrchST.FlexZone2>
                             {bankName === '산업' ?
-                                <ResrchST.BankIcon src={산업}/> :
+                                <ResrchST.BankIcon src={SanUp}/> :
                                 bankName === '새마을금고' ?
-                                <ResrchST.BankIcon src={새마을금고}/> :
+                                <ResrchST.BankIcon src={SaeMaUl}/> :
                                 bankName === '우리' ?
-                                <ResrchST.BankIcon src={우리}/> :
+                                <ResrchST.BankIcon src={WooRi}/> :
                                 <SVG name={bankName}/>
                             } {bankName}
                             </ResrchST.FlexZone2>
@@ -251,11 +251,11 @@ export default function Step3() {
                         <ResrchST.DropDown2>
                             <ResrchST.FlexZone2>
                             {bankName === '산업' ?
-                                <ResrchST.BankIcon src={산업}/> :
+                                <ResrchST.BankIcon src={SanUp}/> :
                                 bankName === '새마을금고' ?
-                                <ResrchST.BankIcon src={새마을금고}/> :
+                                <ResrchST.BankIcon src={SaeMaUl}/> :
                                 bankName === '우리' ?
-                                <ResrchST.BankIcon src={우리}/> :
+                                <ResrchST.BankIcon src={WooRi}/> :
                                 <SVG name={bankName}/>
                             } {bankName}
                             </ResrchST.FlexZone2>
