@@ -1,8 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import * as ResrchST from './ResrchStyle';
-import * as SignST from '../signup/SignUpStyle'
 
 import Layout from '../../components/layout/Layout';
 import { PageContext } from '../../components/context/PageContext';

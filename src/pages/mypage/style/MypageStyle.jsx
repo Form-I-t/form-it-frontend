@@ -1,12 +1,151 @@
 import styled from 'styled-components';
 
 export const ProfileZone = styled.div`
-  position: relative;
-  width: 100%;
-  height: 180px;
+  margin: 40px 0 32px 0;
 
   display: flex;
-  align-items: flex-end;
+  font-size: var(--font-large);
+`;
+
+export const ProfilePic = styled.div`
+  width: 80px;
+  height: 80px;
+  margin-left: 16px;
+  
+  border-radius: 10px;
+  background-color: var(--level-one);
+`;
+
+export const NickText = styled.div`
+  font-weight: var(--weight-semi-bold);
+`;
+
+export const PicRight = styled.div`
+  margin-left: 24px;
+  display: flex;
+  align-items: center;
+`;
+
+export const EditBtn = styled.div` 
+  padding: 16px 28px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  background-color: var(--level-one);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const BtnZone = styled.div`
+  margin-bottom: 48px;
+  height: 76px;
+  display: flex;
+
+  font-size: var(--font-regular);
+  text-align: center;
+  background-color: var(--level-one);
+  border-radius: 10px;
+`;
+
+export const PointBtn = styled.div`
+  width: 40%;
+
+  color: var(--main-black);
+  background-color: var(--level-two);
+  border-radius: 10px 0 0 10px;
+`;
+
+export const PointColorBtn = styled.div`
+  width: 100%;
+  height: 100%;
+  padding-top: 14px;
+  background-color: var(--main-green);
+  border-radius: 10px;
+`;
+
+export const CouponBtn = styled.div`
+  width: 30%;
+  padding-top: 14px;
+
+  background-color: var(--level-two);
+  border-radius: 0 10px 10px 0;
+`;
+
+export const GiticonBtn = styled.div`
+  width: 30%;
+  padding-top: 14px;
+`;
+
+export const NumberText = styled.div`
+  margin-top: 4px;
+  font-size: var(--font-medium);
+  font-weight: var(--weight-semi-bold);
+  white-space: nowrap;
+`;
+
+export const CriticBtn = styled.div`
+  margin-bottom: 20px;
+  padding: 20px 28px;
+
+  border-radius: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  color: var(--main-black);
+  font-weight: var(--weight-regular);
+  background-color: var(--main-green);
+`;
+
+export const AdminBtn = styled.div`
+  margin-bottom: 20px;
+  padding: 20px 28px;
+
+  border-radius: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  color: var(--main-black);
+  font-weight: var(--weight-regular);
+  background-color: var(--main-pink);
+`;
+
+export const AdminCriticBtn = styled.div`
+  margin-bottom: 4px;
+  padding: 20px 28px;
+
+  border-radius: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  color: var(--main-black);
+  font-weight: var(--weight-semi-bold);
+  background-color: var(--main-pink);
+`;
+
+export const Gap8 = styled.div`
+  gap: 8px;
+  display: flex;
+  align-items: center;
+`;
+
+export const HelpBtn = styled.div`
+  margin-bottom: 8px;
+  padding: 20px 28px;
+
+  border-radius: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background-color: var(--level-one);
 `;
 
 export const EditProfileZone = styled.div`
@@ -22,17 +161,6 @@ export const EditSetting = styled.img`
   height: 30px;
 `;
 
-export const ProfilePic = styled.div`
-  width: 70px;
-  height: 70px;
-
-  margin-left: 16px;
-  margin-bottom: 24px;
-  
-  border-radius: 40px;
-  background-color: lightgray;
-`;
-
 export const ProfilePicEdit = styled.div`
   width: 80px;
   height: 80px;
@@ -42,123 +170,6 @@ export const ProfilePicEdit = styled.div`
 
   border-radius: 40px;
   background-color: lightgray;
-`;
-
-export const PicRight = styled.div`
-  width: fit-content;
-  height: 70px;
-
-  margin-left: 12px;
-  margin-bottom: 24px;
-`;
-
-export const NickText = styled.div`
-  color: var(--grey-dark);
-  font-size: var(--font-large);
-  font-weight: var(--weight-semi-bold);
-
-  margin-bottom: 12px;
-`;
-
-export const EditBtn = styled.div`
-  width: fit-content;
-  height: 28px;
-  padding: 10px;
-  margin: auto;
-  
-  border-radius: 14px;
-  background-color: var(--blue-blur-light);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-
-  color: var(--blue-normal);
-  font-size: var(--font-micro);
-  font-weight: var(--weight-semi-bold);
-`;
-
-export const BtnZone = styled.div`
-  position: relative;
-  width: 100%;
-  height: fit-content;
-  margin-bottom: 24px;
-`;
-
-export const ProfileBtn = styled.div`
-  position: relative;
-  width: 95%;
-  height: 77px;
-  margin: auto;
-  margin-bottom: 12px;
-  padding: 28px;
-  gap: 20px;
-
-  border-radius: 12px;
-  box-shadow: 0px 0px 8px 0px rgba(187, 187, 187, 0.50);
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  color: var(--grey-dark);
-  font-size: var(--font-regular);
-  white-space: nowrap;
-`;
-
-export const DetailBtn = styled.div`
-  position: relative;
-  width: 100%;
-  height: 45px;
-
-  text-align: center;
-
-  color: var(--grey-dark);
-  font-size: var(--font-small);
-`;
-
-export const NumberText = styled.div`
-  margin-top: 10px;
-  color: var(--yellow-money);
-  font-size: var(--font-regular);
-  font-weight: var(--weight-semi-bold);
-`;
-
-export const Line = styled.hr`
-  border-top: 4px solid var(--grey-blur-light);
-  border-radius: 12px;
-
-  width: 95%;
-  margin: auto;
-`;
-
-export const HelpZone = styled.div`
-  position: relative;
-  width: 95%;
-  height: 65px;
-  margin: auto;
-  margin-top: 24px;
-
-  display: flex;
-  justify-content: space-between;
-
-  color: var(--grey-dark);
-  font-size: var(--font-small);
-`;
-
-export const HelpBtn = styled.div`
-  position: relative;
-  width: 47%;
-  height: 100%;
-  padding: 20px;
-
-  border-radius: 12px;
-  box-shadow: 0px 0px 8px 0px rgba(187, 187, 187, 0.50);
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 `;
 
 export const InfoText = styled.div`

@@ -11,10 +11,11 @@ import SVG from '../../components/imgs/SVG';
 
 export default function Mypage() {
 
-    const nickname = useSelector((state) => state.user.nickname);
-    const point = useSelector((state) => state.user.point);
     const { setPage } = useContext(PageContext);
     const navigate = useNavigate();
+
+    const nickname = useSelector((state) => state.user.nickname);
+    const point = useSelector((state) => state.user.point);
 
     useEffect(() => {
         setPage('mypage');
@@ -24,43 +25,65 @@ export default function Mypage() {
     <>
     <Layout>
     <SignST.ContentZone>
+
         <MypageST.ProfileZone>
             <MypageST.ProfilePic/>
             <MypageST.PicRight>
-                <MypageST.NickText>{nickname}</MypageST.NickText>
-                <MypageST.EditBtn onClick={()=>navigate('/mypageEdit')}>
-                  내 프로필 <SVG name='Goto' size='8' color='var(--blue-normal)'/>
-                </MypageST.EditBtn>
+                <MypageST.NickText>{nickname}&nbsp;</MypageST.NickText>님
             </MypageST.PicRight>
         </MypageST.ProfileZone>
+
+        <MypageST.EditBtn onClick={()=>navigate('/mypageEdit')}>
+          프로필 수정 <SVG name='Goto' size='12' color='var(--grey-normal)'/>
+        </MypageST.EditBtn>
+
         <MypageST.BtnZone>
-            <MypageST.ProfileBtn>
-                <MypageST.DetailBtn onClick={()=>navigate('/mygifticon')}>
-                  기프티콘 <SVG name='Goto' size='10' color='var(--grey-normal)'/>
-                  <MypageST.NumberText>2</MypageST.NumberText>
-                </MypageST.DetailBtn>
-                <MypageST.DetailBtn onClick={()=>navigate('/mypoint')}>
-                  포인트 <SVG name='Goto' size='10' color='var(--grey-normal)'/>
-                  <MypageST.NumberText>{point}</MypageST.NumberText>
-                </MypageST.DetailBtn>
-                <MypageST.DetailBtn>
-                  쿠폰 <SVG name='Goto' size='10' color='var(--grey-normal)'/>
-                  <MypageST.NumberText>-</MypageST.NumberText>
-                </MypageST.DetailBtn>
-            </MypageST.ProfileBtn>
-            <MypageST.ProfileBtn>
-              내가 조사한 설문 <SVG name='Goto' size='10' color='var(--grey-normal)'/>
-            </MypageST.ProfileBtn>
+          <MypageST.PointBtn onClick={()=>navigate('/mypoint')}>
+            <MypageST.PointColorBtn>
+              포인트 <SVG name='Goto' size='10' color='var(--main-black)'/>
+              <MypageST.NumberText>{point}&nbsp;P</MypageST.NumberText>
+            </MypageST.PointColorBtn>
+          </MypageST.PointBtn>
+          <MypageST.CouponBtn>
+            쿠폰 <SVG name='Goto' size='10' color='var(--main-white)'/>
+            <MypageST.NumberText>-</MypageST.NumberText>
+          </MypageST.CouponBtn>
+          <MypageST.GiticonBtn onClick={()=>navigate('/mygifticon')}>
+            기프티콘 <SVG name='Goto' size='10' color='var(--main-white)'/>
+            <MypageST.NumberText>532&nbsp;개</MypageST.NumberText>
+          </MypageST.GiticonBtn>
         </MypageST.BtnZone>
-        <MypageST.Line/>
-        <MypageST.HelpZone>
-            <MypageST.HelpBtn onClick={()=>navigate('/inquiryPage')}>
-              궁금해요 <SVG name='Goto' size='10' color='var(--grey-normal)'/>
-            </MypageST.HelpBtn>
-            <MypageST.HelpBtn onClick={()=>navigate('/noticePage')}>
-              공지사항 <SVG name='Goto' size='10' color='var(--grey-normal)'/>
-            </MypageST.HelpBtn>
-        </MypageST.HelpZone>
+
+        <MypageST.AdminCriticBtn>
+          <MypageST.Gap8>
+            <SVG name='Star' size='10' color='var(--main-black)'/>
+            설문조사 접수 리스트
+          </MypageST.Gap8>
+          <SVG name='Goto' size='10' color='var(--main-black)'/>
+        </MypageST.AdminCriticBtn>
+        <MypageST.AdminCriticBtn>
+          <MypageST.Gap8>
+          <SVG name='Star' size='10' color='var(--main-black)'/>
+          기프티콘 구매 리스트
+          </MypageST.Gap8>
+          <SVG name='Goto' size='10' color='var(--main-black)'/>
+        </MypageST.AdminCriticBtn>
+        <MypageST.AdminBtn>
+          기프티콘 등록하기
+          <SVG name='Goto' size='10' color='var(--main-black)'/>
+        </MypageST.AdminBtn>
+
+        <MypageST.CriticBtn>
+          내가 접수한 설문 <SVG name='Goto' size='10' color='var(--main-black)'/>
+        </MypageST.CriticBtn>
+
+        <MypageST.HelpBtn onClick={()=>navigate('/inquiryPage')}>
+          F&nbsp;A&nbsp;Q <SVG name='Goto' size='10' color='var(--main-white)'/>
+        </MypageST.HelpBtn>
+        <MypageST.HelpBtn onClick={()=>navigate('/noticePage')}>
+          공지사항 <SVG name='Goto' size='10' color='var(--main-white)'/>
+        </MypageST.HelpBtn>
+
     </SignST.ContentZone>
     </Layout>
     </>

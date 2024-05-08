@@ -74,7 +74,7 @@ export default function MainPage() {
                             설문조사<br/><MainST.HighLight>등록</MainST.HighLight>하기
                         </MainST.OptionText>
                     </MainST.Option>
-                    <MainST.Option>
+                    <MainST.Option onClick={()=>{navigate('/respondent')}}>
                         설문참여
                         <MainST.OptionText>
                             설문조사<br/><MainST.HighLight>참여</MainST.HighLight>하기
