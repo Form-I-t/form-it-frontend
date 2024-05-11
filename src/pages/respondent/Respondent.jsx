@@ -10,14 +10,19 @@ export default function Respondent() {
 
     const { setPage } = useContext(PageContext);
 
+    // 호스트가 localhost에서 클라이언트 서버를 열면 값이 없지만
+    //다른 호스트를 사용시에는 netlify.toml에 설정해둔 proxy값을 할당 받는다.
+    const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+
     useEffect(() => {
         setPage('Respondent');
     }, []);
 
-    const url = 'https://docs.google.com/forms/d/e/1FAIpQLSclatJNoiZUvLfV1VPGRw5qnd5BQQz3vsln48Rr2bHgoJOXRw/viewform';
+    const url = 'https://docs.google.com/forms/d/e/1FAIpQLSfagMTJW24NzYyBL-_NUmuEYJAqiteLhcgNRqCW7qg-VZgzmQ/viewform';
 
     async function crawl(url) {
-        const {data} = await axios.get(url.substring(29));
+        let realUrl = url.substring(29)
+        const {data} = await axios.get(`${PROXY}${realUrl}`);
 
         // HTML 문자열을 파싱하여 DOM 객체 생성
         const parser = new DOMParser();
