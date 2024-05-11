@@ -17,7 +17,7 @@ export default function Respondent() {
     const url = 'https://docs.google.com/forms/d/e/1FAIpQLSclatJNoiZUvLfV1VPGRw5qnd5BQQz3vsln48Rr2bHgoJOXRw/viewform';
 
     async function crawl(url) {
-        let realUrl = url.substring(29)
+        let realUrl = url.substring(30)
         const {data} = await axios.get(`${PROXY}${realUrl}`);
 
         // HTML 문자열을 파싱하여 DOM 객체 생성
