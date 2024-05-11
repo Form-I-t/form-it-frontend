@@ -14,11 +14,7 @@ export default function Respondent() {
     //다른 호스트를 사용시에는 netlify.toml에 설정해둔 proxy값을 할당 받는다.
     const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
 
-    useEffect(() => {
-        setPage('Respondent');
-    }, []);
-
-    const url = 'https://docs.google.com/forms/d/e/1FAIpQLSfagMTJW24NzYyBL-_NUmuEYJAqiteLhcgNRqCW7qg-VZgzmQ/viewform';
+    const url = 'https://docs.google.com/forms/d/e/1FAIpQLSclatJNoiZUvLfV1VPGRw5qnd5BQQz3vsln48Rr2bHgoJOXRw/viewform';
 
     async function crawl(url) {
         let realUrl = url.substring(29)
@@ -166,6 +162,10 @@ export default function Respondent() {
     //         console.log('데이터 수집 완료');
     //     })
     //     .catch(err => console.error(err));
+
+    useEffect(() => {
+        setPage('Respondent');
+    }, []);
 
     return (
         <>
