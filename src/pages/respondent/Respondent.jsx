@@ -161,11 +161,11 @@ export default function Respondent() {
     }
 
     // 실행
-    crawl(url)
-        .then(() => {
-            console.log('데이터 수집 완료');
-        })
-        .catch(err => console.error(err));
+    // crawl(url)
+    //     .then(() => {
+    //         console.log('데이터 수집 완료');
+    //     })
+    //     .catch(err => console.error(err));
 
     return (
         <>
@@ -174,9 +174,9 @@ export default function Respondent() {
 
                 <ResrchST.IntroTitle>
                     참여자페이지
+                    <button onClick={()=>crawl(url)}/>
                 </ResrchST.IntroTitle>
                 <div id = "tagArea"></div>
-                <script src="crawling_html.js"></script>
 
             </ResrchST.ResrchContent>
         </Layout>
