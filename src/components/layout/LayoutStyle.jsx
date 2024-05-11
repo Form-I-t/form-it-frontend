@@ -6,7 +6,7 @@ export const Content = styled.div`
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
-  overflow: hidden;
+  overflow: scroll;
 
   min-height: 100vh;
   box-shadow: 0px 0px 20px rgba(187, 187, 187, 0.32);

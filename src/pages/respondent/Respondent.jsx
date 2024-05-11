@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import axios from 'axios';
 
 import * as ResrchST from '../researcher/ResrchStyle';
 
@@ -10,44 +10,169 @@ export default function Respondent() {
 
     const { setPage } = useContext(PageContext);
 
-    // const id = useSelector((state) => state.survey.id); //접수번호
-    // const googleFormLink = useSelector((state) => state.survey.googleFormLink); //구글폼 링크
-    // const participantCount = useSelector((state) => state.survey.participantCount); //희망 응답자 수
-    // const rewardPoints = useSelector((state) => state.survey.rewardPoints); //인당 포인트
-    // const deadline = useSelector((state) => state.survey.deadline); //설문 종료날짜
-    // const accountHolderName = useSelector((state) => state.survey.accountHolderName); //예금주
-    // // +은행명
-    // const account = useSelector((state) => state.survey.account); //계좌번호
-    // const createdAt = useSelector((state) => state.survey.createdAt); //설문 시작날짜
-    // const price = useSelector((state) => state.survey.price); //결제금액
-
-    // console.log(
-    //     id,
-    //     googleFormLink,
-    //     participantCount,
-    //     rewardPoints,
-    //     deadline,
-    //     accountHolderName,
-    //     account,
-    //     createdAt,
-    //     price
-    // );
-
     useEffect(() => {
         setPage('Respondent');
     }, []);
+
+    const url = 'https://docs.google.com/forms/d/e/1FAIpQLSclatJNoiZUvLfV1VPGRw5qnd5BQQz3vsln48Rr2bHgoJOXRw/viewform';
+
+    async function crawl(url) {
+        const {data} = await axios.get(url.substring(29));
+
+        // HTML 문자열을 파싱하여 DOM 객체 생성
+        const parser = new DOMParser();
+        const htmlDOM = parser.parseFromString(data, 'text/html');
+        
+        // 각 데이터 추출
+        const elements = htmlDOM.querySelectorAll(".Qr7Oae");
+        
+        //HTML 내 tagArea 가져오기
+        let tagArea=document.getElementById('tagArea');
+        var choiceCount=1; // 객관식 radio button 구분용 count
+        var checkCount=1; // 체크박스 구분용 count
+
+        elements.forEach (function (el) {
+            let question_html='';
+            if(el.querySelector(".z12JJ")!=null){
+                //질문 내용 가져오기
+                const question = el.querySelector(".z12JJ");
+                question_html = document.createElement('p');
+
+                question_html.setAttribute('class','question');
+                question_html.innerHTML=question.textContent;
+
+                tagArea.appendChild(question_html);
+                question_html.appendChild(document.createElement('br'));
+            }
+            
+            else{
+                const question = el.querySelector(".M7eMe");
+                question_html = document.createElement('p');
+
+                question_html.setAttribute('class','question');
+                question_html.innerHTML=question.textContent;
+
+                tagArea.appendChild(question_html);
+                question_html.appendChild(document.createElement('br'));
+            }
+
+            //객관식일 경우
+            if(el.querySelector(".oyXaNc")!=null){
+                var count=1;
+                //각 요소 가져오기
+                el.querySelector(".oyXaNc").querySelectorAll(".OvPDhc").forEach(function(choice){
+                    let choice_html=document.createElement('input');
+
+                    choice_html.setAttribute('type','radio');
+                    choice_html.setAttribute('id','choice'+count);
+                    choice_html.setAttribute('name','choice'+choiceCount);
+                    choice_html.setAttribute('value',count);
+                    choice_html.innerHTML=choice.textContent;
+
+                    question_html.appendChild(choice_html);
+
+                    let choice_label=document.createElement('label');
+                    choice_label.setAttribute('for','choice'+count);
+                    choice_label.innerHTML=choice.textContent;
+
+                    question_html.appendChild(choice_label);
+                    question_html.appendChild(document.createElement('br'));
+                    count++;
+                })
+                choiceCount++;
+            }
+
+            //단답형/장문형일 경우
+            else if(el.querySelector(".AgroKb")!=null){
+                //textInput 생성
+                let input_html=document.createElement('input');
+                input_html.setAttribute('type','text');
+
+                question_html.appendChild(input_html);
+            }
+
+            //체크박스일 경우
+            else if(el.querySelector(".Y6Myld")!=null){
+                //각 요소 가져오기
+                var count=1;
+                el.querySelector(".Y6Myld").querySelectorAll(".n5vBHf").forEach(function(check){
+                    let check_html=document.createElement('input');
+
+                    check_html.setAttribute('type','checkbox');
+                    check_html.setAttribute('id','check'+count);
+                    check_html.setAttribute('name','check'+checkCount);
+                    check_html.setAttribute('value',count);
+                    check_html.innerHTML=check.textContent;
+
+                    question_html.appendChild(check_html);
+
+                    let check_label=document.createElement('label');
+                    check_label.setAttribute('for','choice'+count);
+                    check_label.innerHTML=check.textContent;
+
+                    question_html.appendChild(check_label);
+                    question_html.appendChild(document.createElement('br'));
+                    count++;
+                })
+                checkCount++;
+            }
+
+            //드롭다운일 경우
+            else if(el.querySelector(".vQES8d")!=null){
+                let select_html=document.createElement('select');
+                question_html.appendChild(select_html);
+                var count=1;
+                //각 요소 가져오기
+                el.querySelector(".vQES8d").querySelectorAll(".vRMGwf").forEach(function(select){
+                    let option_html=document.createElement('option');
+
+                    option_html.setAttribute('value',count);
+                    option_html.innerHTML=select.textContent;
+
+                    select_html.appendChild(option_html);
+
+                    question_html.appendChild(document.createElement('br'));
+                    count++;
+                    // console.log("▽ "+choice.textContent);
+                })
+            }
+
+            //사진일 경우
+            else if(el.querySelector(".y6GzNb")!=null){
+                let img_html=document.createElement('img');
+                question_html.appendChild(img_html);
+                const imgEl = el.querySelector(".y6GzNb").querySelector('img');
+                let img = '';
+                if (imgEl) {
+                    img = imgEl.src;
+                }
+                img_html.setAttribute('src',img);
+            }
+
+            console.log('');
+            // console.log (element.textContent+'\n');
+        });
+        // console.log(`Title: ${title}\n`);
+    }
+
+    // 실행
+    crawl(url)
+        .then(() => {
+            console.log('데이터 수집 완료');
+        })
+        .catch(err => console.error(err));
 
     return (
         <>
         <Layout>
             <ResrchST.ResrchContent>
+
                 <ResrchST.IntroTitle>
                     참여자페이지
                 </ResrchST.IntroTitle>
+                <div id = "tagArea"></div>
+                <script src="crawling_html.js"></script>
 
-                <ResrchST.IntroText>
-                    설문조사들 나열
-                </ResrchST.IntroText>
             </ResrchST.ResrchContent>
         </Layout>
         </>
