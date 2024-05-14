@@ -6,6 +6,7 @@ const cookies = new Cookies();
 export const setRefreshToken = (refreshToken) => {
     const today = new Date();
     const expireDate = today.setDate(today.getDate() + 1);
+    document.cookie = "myCookie=myValue; SameSite=None; Secure";
 
     return cookies.set('refreshToken', refreshToken, {
         sameSite: 'strict',

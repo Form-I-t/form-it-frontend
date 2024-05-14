@@ -107,6 +107,7 @@ export default function Mypage() {
           공지사항 <SVG name='Goto' size='10' color='var(--main-white)'/>
         </MypageST.HelpBtn>
 
+        <div style={{ height: '60px'}}/>
     </SignST.ContentZone>
     </Layout>
     </>

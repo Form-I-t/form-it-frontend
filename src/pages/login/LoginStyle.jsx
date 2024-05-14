@@ -1,23 +1,13 @@
 import styled from 'styled-components';
 
-export const MainBg = styled.div`
-  position: absolute;
-  align-items: center;
-
-  background-color: var(--main-black);
-  width: 100%;
-  height: 100%;
-
-  display: flex;
-  justify-content: center;
-`;
-
 export const ContentZone = styled.div`
   position: relative;
 
   width: calc(100% - 48px);
   height: calc(100% - 100px);
   margin-top: 100px;
+  
+  color: var(--main-white);
 `;
 
 export const LogoZone = styled.div`
@@ -105,6 +95,7 @@ export const SignUpBtn = styled.div`
   font-size: var(--font-regular);
   font-weight: var(--weight-semi-bold);
   background-color: var(--main-green);
+  color: var(--main-black);
 
   border-radius: 12px;
 

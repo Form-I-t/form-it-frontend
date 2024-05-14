@@ -72,7 +72,6 @@ export default function SignUp() {
     return (
         <>
         <Layout>
-            <LoginST.MainBg>
             <LoginST.ContentZone>
 
                 {/* 문구 */}
@@ -120,7 +119,7 @@ export default function SignUp() {
                 </LoginST.SignUpBtn>
 
             </LoginST.ContentZone>
-            </LoginST.MainBg>
+            <div style={{ height: '60px'}}/>
         </Layout>
         </>
     );
