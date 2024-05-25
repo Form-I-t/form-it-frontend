@@ -283,12 +283,12 @@ export default function Step3() {
                 </ResrchST.FlexZone>
 
                 <ResrchST.Warning>
-                    환불 시 위 계좌를 사용합니다.
+                    <SVG name='Check' size='15'/>환불 시 위 계좌로 입금됩니다.
                 </ResrchST.Warning>
 
                 {confirmMsg === true ?
                     <ResrchST.ConfirmZone>
-                        확인 후 게시까지 1~2일 소요됩니다 :)
+                        접수 후 게시까지 1~2일 소요됩니다 :)
                         <input id="confirmChk" type="checkbox" onClick={confirmHandler}/>
                     </ResrchST.ConfirmZone>
                     : ''

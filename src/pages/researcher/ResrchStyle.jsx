@@ -242,7 +242,7 @@ export const PgBar3 = styled.div`
 `;
 
 export const DropDown = styled.div`
-  width: 70px;
+  width: 74px;
   height: 29px;
   padding: 4px 8px 4px 12px;
   
@@ -269,7 +269,7 @@ export const DropDown2 = styled.div`
 `;
 
 export const DropDownOpen = styled.div`
-  width: 70px;
+  width: 74px;
   height: 29px;
   padding: 4px 8px 4px 12px;
   
@@ -301,7 +301,7 @@ export const SelectZone = styled.div`
 
 export const Ul = styled.div`
   position: absolute;
-  width: 70px;
+  width: 74px;
   height: 227px;
 
   overflow: scroll;
@@ -349,7 +349,7 @@ export const Li2 = styled.div`
 `;
 
 export const FormBox = styled.div`
-  padding: 16px;
+  padding: 14px;
   margin-top: 20px;
   gap: 24px;
 
@@ -361,43 +361,18 @@ export const FormBox = styled.div`
   white-space: nowrap;
 `;
 
-export const PeopleIcon = styled.div`
+export const OnOffIcon = styled.img`
   width: 50px;
   height: 50px;
-
-  border-radius: 8px;
-  background-color: ${(props) => (props.$inputPe === true ? 'var(--main-green)' : 'var(--level-two)')};
-`;
-
-export const PointIcon = styled.div`
-  width: 50px;
-  height: 50px;
-
-  border-radius: 8px;
-  background-color: ${(props) => (props.$inputPo === true ? 'var(--main-green)' : 'var(--level-two)')};
-`;
-
-export const StartDateIcon = styled.div`
-  width: 50px;
-  height: 50px;
-
-  border-radius: 8px;
-  background-color: ${(props) => (props.$inputSd === true ? 'var(--main-green)' : 'var(--level-two)')};
-`;
-
-export const EndDateIcon = styled.div`
-  width: 50px;
-  height: 50px;
-
-  border-radius: 8px;
-  background-color: ${(props) => (props.$inputEd === true ? 'var(--main-green)' : 'var(--level-two)')};
 `;
 
 export const Warning = styled.div`
-  margin-top: 8px;
+  margin: 10px 0 0 4px;
   font-weight: var(--weight-regular);
   font-size: var(--font-micro);
   color: var(--main-green);
+  align-items: center;
+  display: flex;
 `;
 
 export const Copied = styled.div`
@@ -412,15 +387,9 @@ export const Copied = styled.div`
 `;
 
 export const CalculationBtn = styled.div`
-  position: absolute;
-  width: 100%;
-  padding: 8px;
-  bottom: 80px;
-  gap: 16px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  margin-top: 32px;
+  padding: 16px 24px;
+  border-radius: 16px;
 
   background-color: var(--main-green);
   color: var(--main-black);
@@ -429,7 +398,7 @@ export const CalculationBtn = styled.div`
 `;
 
 export const PriceText = styled.div`
-  font-size: 26px;
+  font-size: 28px;
   white-space: nowrap;
   font-weight: var(--weight-semi-bold);
 `;

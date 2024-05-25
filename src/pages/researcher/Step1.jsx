@@ -83,7 +83,7 @@ export default function Step1() {
                     설문받을&nbsp;<MainST.NickText>구글 폼</MainST.NickText>의
                 </MainST.GuideText>
                 <MainST.GuideText>
-                    <MainST.NickText>URL</MainST.NickText>을 입력해주세요.
+                    기본 정보를 입력해주세요.
                 </MainST.GuideText>
 
                 <ResrchST.FormIcon src={FormIcon}/>
@@ -96,12 +96,12 @@ export default function Step1() {
                 </LoginST.InputBox>
 
                 <ResrchST.CantBox>
-                    <b>지원 불가한 문항</b>
+                    <b>지원되지 않아요!</b>
                     <ResrchST.FlexZone>
-                    <SVG name='Cant'/> 이미지, 동영상이 첨부된 문항
+                    <SVG name='Cant'/> 선형배율, 그리드 문항
                     </ResrchST.FlexZone>
                     <ResrchST.FlexZone>
-                    <SVG name='Cant'/> 선형배율, 객관식, 체크박스, 그리드 문항
+                    <SVG name='Cant'/> 섹션으로 나뉘어진 설문
                     </ResrchST.FlexZone>
                 </ResrchST.CantBox>
 

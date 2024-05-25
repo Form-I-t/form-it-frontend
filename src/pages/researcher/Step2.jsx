@@ -11,6 +11,8 @@ import Layout from '../../components/layout/Layout';
 import CheckModal from '../../components/modal/CheckModal';
 import SVG from '../../components/imgs/SVG';
 import CautionModal from '../../components/modal/CautionModal';
+import BlackIcon from '../../components/imgs/researcher/blackIcon.png';
+import ColorIcon from '../../components/imgs/researcher/colorIcon.png';
 
 import { PageContext } from '../../components/context/PageContext';
 import { useInput } from '../../hooks/useInput';
@@ -37,7 +39,6 @@ export default function Step2() {
     const [inputPe, setInputPe] = useState(false);
     const [inputPo, setInputPo] = useState(false);
     const [inputSd, setInputSd] = useState(false);
-    const [inputEd, setInputEd] = useState(false);
     const [btnActiv, setBtnActiv] = useState(false);
 
     const [ { startDate, endDate },
@@ -99,7 +100,7 @@ export default function Step2() {
     useEffect(() => {
         if (people !== 0) {setInputPe(true)};
         if (point !== 0) {setInputPo(true)};
-        if ((startDate && endDate) !== '') {setInputSd(true); setInputEd(true);};
+        if ((startDate && endDate) !== '') {setInputSd(true)};
 
         //결제 금액 계산
         if ( (startDate === "") || (endDate === "") ) {
@@ -173,9 +174,11 @@ export default function Step2() {
                 </MainST.GuideText>
                 <div style={{ height: '24px'}}/>
                 <ResrchST.FormBox>
-                    <ResrchST.PeopleIcon $inputPe={inputPe}/>
+                    {inputPe === false ?
+                        <ResrchST.OnOffIcon src={BlackIcon}/>:
+                        <ResrchST.OnOffIcon src={ColorIcon}/>}
                     <ResrchST.SelectZone onClick={PemHandler}>
-                        희망 응답자 수 <br/>
+                        희망 응답자 수
                         <ResrchST.FlexZone>
                             {pemOpen === true ?
                             <ResrchST.DropDownOpen>
@@ -215,15 +218,17 @@ export default function Step2() {
                 </ResrchST.FormBox>
 
                 <ResrchST.FormBox>
-                    <ResrchST.PointIcon $inputPo={inputPo}/>
+                    {inputPo === false ?
+                        <ResrchST.OnOffIcon src={BlackIcon}/>:
+                        <ResrchST.OnOffIcon src={ColorIcon}/>}
                     <ResrchST.SelectZone onClick={PomHandler}>
-                        한 명당 <br/>
+                        한 명당
                         <ResrchST.FlexZone>
                         {pomOpen === true ?
-                        <ResrchST.DropDown onClick={()=>{setPomOpen(true);}}>
+                        <ResrchST.DropDownOpen onClick={()=>{setPomOpen(true);}}>
                             {point}
-                            <SVG name='Open' size='12'/>
-                        </ResrchST.DropDown>
+                            <SVG name='Close' size='12'/>
+                        </ResrchST.DropDownOpen>
                         :
                         <ResrchST.DropDown onClick={()=>{setPomOpen(true);}}>
                             {point}
@@ -259,10 +264,12 @@ export default function Step2() {
                 </ResrchST.FormBox>
 
                 <ResrchST.FormBox>
-                    <ResrchST.StartDateIcon $inputSd={inputSd}/>
+                    {inputSd === false ?
+                    <ResrchST.OnOffIcon src={BlackIcon}/>:
+                    <ResrchST.OnOffIcon src={ColorIcon}/>}
 
                     <ResrchST.SelectZone>
-                        설문 기간 <br/>
+                        설문 기간
                         <ResrchST.FlexZone>
                             <ResrchST.DateInput
                                 name="startDate"
@@ -283,7 +290,8 @@ export default function Step2() {
                         </ResrchST.FlexZone>
 
                     <ResrchST.Warning>
-                        검수 후 업로드까지 약 12시간 소요됩니다.
+                        <SVG name='Check' size='15'/>
+                        접수 후 게시까지 최대 24시간 소요됩니다.
                     </ResrchST.Warning>
 
                     </ResrchST.SelectZone>
@@ -291,16 +299,17 @@ export default function Step2() {
 
                 </ResrchST.FormBox>
 
-                {/* 고민중!!!!!!!!!!1 */}
-                <ResrchST.ButtonZone>
-                    <ResrchST.CalculationBtn ref={bottomRef}>
-                        결제 금액은
+                <ResrchST.CalculationBtn ref={bottomRef}>
+                    결제 금액은
+                    <ResrchST.FlexZone>
                         <ResrchST.PriceText>
                         {finalPrice === (0 || NaN) ? 0 : finalPrice.toLocaleString('ko-KR')}
                         </ResrchST.PriceText>
                         원 입니다.
-                    </ResrchST.CalculationBtn>
+                    </ResrchST.FlexZone>
+                </ResrchST.CalculationBtn>
 
+                <ResrchST.ButtonZone>
                     <ResrchST.CancelBtn
                         onClick={()=>{setIsModal(true)}}>
                         돌아가기
