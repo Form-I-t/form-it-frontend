@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 
 export const ResrchContent = styled.div`
@@ -40,68 +40,16 @@ export const SuccessBtn = styled.div`
 
 export const IntroTitle = styled.div`
   margin-top : 28px;
-  margin-bottom: 35px;
+  margin-bottom: 50px;
 
   font-size: var(--font-huge);
   font-weight: var(--weight-semi-bold);
 `;
 
-export const BoxZone = styled.div`
-  position: relative;
-  width: 100%;
-  height: fit-content;
-  margin-bottom: 48px;
-  gap: 24px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  overflow-x: hidden;
-  white-space: nowrap;
-`;
-
-
-export const CenterBox = styled.div`
-  width: 80vw;
-  height: 355px;
-
-  border-radius: 40px;
-  background-color: var(--main-white);
-
-  font-size: var(--font-small);
-  color: var(--grey-normal);
-`;
-
-export const LeftBox = styled.div`
-  width: 10vw;
-  height: 300px;
-  padding: 12px;
-
-  border-radius: 0 40px 40px 0;
-  background: linear-gradient(0deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.1));
-  background-size: cover;
-
-  font-size: var(--font-small);
-  color: var(--grey-normal);
-`;
-
-export const RightBox = styled.div`
-  width: 10vw;
-  height: 300px;
-  padding: 12px;
-
-  border-radius: 40px 0 0 40px ;
-  background: linear-gradient(0deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.1));
-  background-size: cover;
-
-  font-size: var(--font-small);
-  color: var(--grey-normal);
-`;
-
 export const IntroText = styled.div`
   font-size: var(--font-medium);
   font-weight: var(--weight-semi-bold);
+  margin-top: 30px;
 `;
 
 export const SmallText = styled.div`
@@ -115,20 +63,16 @@ export const SmallText = styled.div`
 export const FormIcon = styled.img`
   width: 45px;
   margin: auto;
-
   display: flex;
-  align-items: center;
-  justify-content: center;
-
-  margin-top: 80px;
-  margin-bottom: 12px;
+  margin-top: 50px;
+  margin-bottom: 50px;
 `;
 
 export const CantBox = styled.div`
   width: fit-content;
   padding: 14px 18px;
   margin: auto;
-  margin-top: 100px;
+  margin-top: 40px;
 
   align-items: center;
   justify-content: center;
@@ -318,7 +262,7 @@ export const Ul2 = styled.ul`
   position: absolute;
   width: 140px;
   height: 340px;
-  top: 72px;
+  top: 74px;
 
   overflow: scroll;
   
@@ -397,6 +341,13 @@ export const CalculationBtn = styled.div`
   font-size: 18px;
 `;
 
+export const PaymentImg = styled.img`
+  position: absolute;
+  display: flex;
+  right: 20px;
+  width: 140px;
+`;
+
 export const PriceText = styled.div`
   font-size: 28px;
   white-space: nowrap;
@@ -459,19 +410,50 @@ export const BankIcon = styled.img`
   height: 16px;
 `;
 
+export const boxFade = keyframes`
+  0% {
+    opacity: 0;
+    bottom: 0px;
+  }
+  50% {
+    opacity: 0.5;
+    bottom: 50px;
+  }
+  100% {
+    opacity: 1;
+    bottom: 100px;
+  }
+`;
+
 export const ConfirmZone = styled.div`
   position: absolute;
   width: 100%;
-  height: 36px;
-  bottom: 92px;
+  height: 105px;
+  bottom: 100px;
   padding: 16px;
 
   display: flex;
   align-items: center;
-  justify-content: space-between;
 
-  border-radius: 8px;
-  background-color: var(--main-green);
+  border-radius: 16px;
+  background-color: var(--main-white);
+  line-height: 1.3 ;
+  animation: ${boxFade} 0.3s linear;
+`;
+
+export const ConfirmImg = styled.img`
+  width: 70px;
+  height: 80px;
+`;
+
+export const ConfirmText = styled.div`
+  margin-left: 12px;
   color: var(--main-black);
-  font-weight: var(--weight-semi-bold);
+  font-weight: var(--weight-thin);
+  font-size: var(--font-small);
+`;
+
+export const ConfirmLarge = styled.div`
+  font-size: var(--font-regular);
+  margin-bottom: 6px;
 `;

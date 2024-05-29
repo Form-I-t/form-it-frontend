@@ -26,7 +26,13 @@ export default function Step1() {
     const [isModal, setIsModal] = useState(false);
     const [isBlank, setIsBlank] = useState(false);
     const [modalMsg, setModalMsg] = useState('입력사항을 확인해주세요.');
-    const [ {formUrl}, onInputChange, resetInput ] = useInput({formUrl: ""});
+    const [ { formUrl, resrcher, respndnt},
+            onInputChange,
+            resetInput ] = useInput(
+                {   formUrl: "",
+                    resrcher: "",
+                    respndnt: "",
+                });
     const [btnActiv, setBtnActiv] = useState(false);
 
     const nextHandler = async() => {
@@ -52,14 +58,14 @@ export default function Step1() {
     };
 
     useEffect(() => {
-        if (formUrl === "") {
-            setBtnActiv(false);
-        } else {
+        if ((formUrl && resrcher) !== "") {
             setTimeout(() => {
                 setBtnActiv(true);
             }, 500)
+        } else {
+            setBtnActiv(false);
         }
-    }, [formUrl])
+    }, [formUrl, resrcher])
 
     useEffect(() => {
         setPage('step1');
@@ -87,12 +93,26 @@ export default function Step1() {
                 </MainST.GuideText>
 
                 <ResrchST.FormIcon src={FormIcon}/>
-                <LoginST.InputBox
+                <LoginST.RequInputBox
                     name = "formUrl"
                     type = 'text'
                     value = {formUrl}
                     onChange = {onInputChange}
-                    placeholder = '링크를 입력해주세요 !'>
+                    placeholder = '링크 URL'>
+                </LoginST.RequInputBox>
+                <LoginST.RequInputBox
+                    name = "resrcher"
+                    type = 'text'
+                    value = {resrcher}
+                    onChange = {onInputChange}
+                    placeholder = '조사 단체 or 조사자'>
+                </LoginST.RequInputBox>
+                <LoginST.InputBox
+                    name = "respndnt"
+                    type = 'text'
+                    value = {respndnt}
+                    onChange = {onInputChange}
+                    placeholder = '특정 조사 대상'>
                 </LoginST.InputBox>
 
                 <ResrchST.CantBox>

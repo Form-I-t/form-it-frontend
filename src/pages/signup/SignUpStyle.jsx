@@ -12,8 +12,8 @@ export const ContentZone = styled.div`
 `;
 
 export const SuccessZone = styled.div`
-  text-align: center;
   margin-top: 100px;
+  margin-left: 10px;
 
   color: var(--main-white);
   font-size: var(--font-medium);
@@ -21,7 +21,15 @@ export const SuccessZone = styled.div`
 
 export const SuccessText = styled.div`
   color: var(--main-white);
-  font-size: var(--font-medium);
+  font-size: 28px;
+  margin-top: 4px;
+`;
+
+export const SmallText = styled.div`
+  color: var(--grey-normal);
+  font-size: var(--font-regular);
+  line-height: 1.3;
+  margin-top: 30px;
 `;
 
 export const GuideZone = styled.div`
@@ -29,23 +37,6 @@ export const GuideZone = styled.div`
   padding-left: 8px;
   margin-top: 100px;
   margin-bottom: 36px;
-`;
-
-//삭제 예정 !!!!
-export const InputBox = styled.input`
-  position: relative;
-  width: 100%;
-  height: 52px;
-  margin-top: 16px;
-  
-  font-size: var(--font-regular);
-  font-weight: var(--weight-regular);
-  color: var(--main-white);
-  padding-left: 24px;
-
-  border-radius: 12px;
-  background-color: var(--level-one);
-  border: 2px solid ${(props) => (props.isEmailFail === 'true' ? 'var(--main-pink)' : 'var(--level-one-ol)')};
 `;
 
 export const CheckText = styled.div`
@@ -100,7 +91,7 @@ export const SubmitBtn = styled.button`
 
 export const SuccessBtn = styled.div`
   position: absolute;
-  width: 100%;
+  width: calc(100% - 20px);
   height: 60px;
   bottom: 20px;
 

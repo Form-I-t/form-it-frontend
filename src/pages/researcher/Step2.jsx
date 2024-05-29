@@ -13,6 +13,7 @@ import SVG from '../../components/imgs/SVG';
 import CautionModal from '../../components/modal/CautionModal';
 import BlackIcon from '../../components/imgs/researcher/blackIcon.png';
 import ColorIcon from '../../components/imgs/researcher/colorIcon.png';
+import PaymentImg from '../../components/imgs/researcher/paymentImg.png';
 
 import { PageContext } from '../../components/context/PageContext';
 import { useInput } from '../../hooks/useInput';
@@ -300,6 +301,7 @@ export default function Step2() {
                 </ResrchST.FormBox>
 
                 <ResrchST.CalculationBtn ref={bottomRef}>
+                    <ResrchST.PaymentImg src={PaymentImg}/>
                     결제 금액은
                     <ResrchST.FlexZone>
                         <ResrchST.PriceText>

@@ -4,6 +4,7 @@ import { PageContext } from '../../../components/context/PageContext';
 
 import * as MypageST from '../style/MypageStyle';
 import * as SignST from '../../signup/SignUpStyle';
+import * as LoginST from '../../login/LoginStyle';
 import Layout from '../../../components/layout/Layout';
 import Setting from '../../../components/imgs/Setting.png'
 import MyPicEdit from './MyPicEdit'
@@ -57,7 +58,7 @@ export default function MypageEdit() {
             <MypageST.EditBtn>중복 확인</MypageST.EditBtn>
         </MypageST.NickEdit>
         <MypageST.InfoText>이메일</MypageST.InfoText>
-        <SignST.InputBox/>
+        <LoginST.InputBox/>
     </SignST.ContentZone>
     </Layout>
     </>

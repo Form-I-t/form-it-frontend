@@ -14,6 +14,7 @@ import SVG from '../../components/imgs/SVG';
 import SanUp from '../../components/imgs/bank/SanUp.png';
 import SaeMaUl from '../../components/imgs/bank/SaeMaUl.png';
 import WooRi from '../../components/imgs/bank/WooRi.png';
+import Bomb from '../../components/imgs/researcher/bomb.png';
 
 import { PageContext } from '../../components/context/PageContext';
 import { useInput } from '../../hooks/useInput';
@@ -31,7 +32,6 @@ export default function Step3() {
     const [bankName, setBankName] = useState('은행 선택');
     const [DdOpen, setDdOpen] = useState(false);
     const [isCopied, setIsCopied] = useState(false);
-    const [confirmMsg, setConfirmMsg] = useState(false);
     const [btnActiv, setBtnActiv] = useState(false);
 
     const surveyId = useSelector((state) => state.survey.id);
@@ -66,16 +66,6 @@ export default function Step3() {
         setIsCopied(true);
     }
 
-    //체크박스 인식
-    const confirmHandler = () => {
-        //체크박스 element 찾기
-        const checkbox = document.getElementById('confirmChk');
-        //checked 속성 인식하는 변수
-        const is_checked = checkbox.checked;
-        //접수버튼 활성화
-        is_checked === true ? setBtnActiv(true) : setBtnActiv(false);
-    }
-
     const nextHandler = async() => {
         if (btnActiv === false) {
             setModalMsg('입력사항을 확인해주세요 !');
@@ -102,7 +92,7 @@ export default function Step3() {
         if (((accountOwner && account) !== "") &&
         (bankName !== '은행 선택')) {
             setTimeout(() => {
-                setConfirmMsg(true);
+                setBtnActiv(true);
             }, 800)
         }
     }, [accountOwner, bankName, account])
@@ -149,10 +139,11 @@ export default function Step3() {
                         결제 금액
                         <div style={{ height: '4px'}}/>
                     <ResrchST.PriceText>
-                        {/* 오류 방지 주석 */}
-                        {price.toLocaleString('ko-KR')} 원
+                        50,000원
+                        {/* {price.toLocaleString('ko-KR')} 원 */}
                     </ResrchST.PriceText>
                 </ResrchST.FinalPrice>
+
 
                 <ResrchST.TitleText>
                     입금자 정보
@@ -286,10 +277,14 @@ export default function Step3() {
                     <SVG name='Check' size='15'/>환불 시 위 계좌로 입금됩니다.
                 </ResrchST.Warning>
 
-                {confirmMsg === true ?
-                    <ResrchST.ConfirmZone>
-                        접수 후 게시까지 1~2일 소요됩니다 :)
-                        <input id="confirmChk" type="checkbox" onClick={confirmHandler}/>
+                {btnActiv === true ?
+                    <ResrchST.ConfirmZone $btnActiv={btnActiv}>
+                        <ResrchST.ConfirmImg src={Bomb}/>
+                            <ResrchST.ConfirmText>
+                                <ResrchST.ConfirmLarge><b>제출 전 잠깐!</b></ResrchST.ConfirmLarge>
+                                게시 기간 중 <b>내용 수정</b>, 기간 <b>연장</b>은 <br/>
+                                카톡 채널로 문의해주세요 :)
+                            </ResrchST.ConfirmText>
                     </ResrchST.ConfirmZone>
                     : ''
                 }

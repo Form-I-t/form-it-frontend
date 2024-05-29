@@ -41,6 +41,7 @@ export const InputBox = styled.input`
   width: 100%;
   height: 52px;
   margin-top: 16px;
+  justify-content: space-between;
   
   font-size: var(--font-regular);
   font-weight: var(--weight-regular);
@@ -50,6 +51,23 @@ export const InputBox = styled.input`
   border-radius: 12px;
   background-color: var(--level-one);
   border: 2px solid var(--level-one-ol);
+`;
+
+export const RequInputBox = styled.input`
+  position: relative;
+  width: 100%;
+  height: 52px;
+  margin-top: 16px;
+  justify-content: space-between;
+  
+  font-size: var(--font-regular);
+  font-weight: var(--weight-regular);
+  color: var(--main-white);
+  padding-left: 24px;
+
+  border-radius: 12px;
+  background-color: var(--level-one);
+  border: 2px solid var(--main-green);
 `;
 
 export const CautionText = styled.div`

@@ -22,8 +22,13 @@ export default function StepComplete() {
                 <SignST.SuccessZone>
                     {/* 문구 */}
                     <MainST.NickText>감사합니다!</MainST.NickText>
-                    <div style={{ height: '8px'}}/>
                     <SignST.SuccessText>접수가 완료되었습니다.</SignST.SuccessText>
+
+                    <SignST.SmallText>
+                        입력사항과 입금내역이 확인되면 <br/>
+                        검수 후 설문조사가 게시됩니다.
+                    </SignST.SmallText>
+
                     {/* 버튼 */}
                     <SignST.SuccessBtn
                      onClick={() => { navigate('/respondent'); }}
