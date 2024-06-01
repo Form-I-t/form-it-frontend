@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
 
 export const Content = styled.div`
   background-color: var(--main-black);
@@ -52,4 +52,41 @@ export const BackBtn = styled.div`
   margin-left: 20px;
   cursor: pointer;
   z-index: 900;
+`
+
+export const boxShake = keyframes`
+  from {
+    transform: rotate(1deg);
+  }
+  to {
+    transform: rotate(-1deg);
+  }
+`;
+
+export const boxFade = keyframes`
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+`;
+
+export const ShakeBox = styled.div`
+  width: 52%;
+  height: 42%;
+  margin: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50px;
+  background-color: var(--main-pink);
+
+  animation: ${boxShake} 0.1s 10,
+              ${boxFade} 3s;
 `

@@ -1,5 +1,5 @@
 import * as LayoutST from './LayoutStyle'
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PageContext } from '../../components/context/PageContext'
 
@@ -7,6 +7,19 @@ export default function Layout(props) {
 
     const navigate = useNavigate();
     const { page } = useContext(PageContext);
+
+    const [isShake, setIsShake] = useState(false);
+
+    const isUserHandler = () => {
+        if(props.isLogin === false) {
+            setIsShake(true);
+            setTimeout(() => {
+                setIsShake(false);
+            }, 3000)
+        } else {
+            navigate('/mypage');
+        } 
+    }
 
     return (
         <LayoutST.Content>
@@ -33,7 +46,7 @@ export default function Layout(props) {
                 <LayoutST.GiftMy>
                     {page === 'MainPage' ? ( <>
                     <svg 
-                        width="28" 
+                        width="30" 
                         height="28"
                         viewBox="0 0 28 28"
                         fill="none"
@@ -59,10 +72,16 @@ export default function Layout(props) {
                             marginRight: '24px',
                             cursor: 'pointer',
                             }}
-                        onClick={() => {navigate('/mypage')}}>
+                        onClick={isUserHandler}>
                         <path d="M1.95027 22C0.952267 17.9474 -0.714144 13.1579 5.87267 10.2105C1.68106 3.43158 6.37182 1.24561 9.24116 1C11.9857 1.12281 16.8759 3.13684 14.4807 10.2105C20.4687 13.7474 19.1658 17.2105 18.043 22" stroke="#E0E0E0" strokeWidth="2"/>
                     </svg> </> ) : (<></>)}
                 </LayoutST.GiftMy>
+                {isShake === true ?
+                    <LayoutST.ShakeBox>
+                        로그인 후 이용 가능합니다 :)
+                    </LayoutST.ShakeBox> :
+                    <></>}
+
             </LayoutST.Header>
             {props.children}
         </LayoutST.Content>

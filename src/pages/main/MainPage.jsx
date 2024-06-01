@@ -32,7 +32,7 @@ export default function MainPage() {
 
     return (
         <>
-        <Layout>
+        <Layout isLogin={isLogin}>
             <MainST.ContentZone>
                 {isLogin === false ?
                 <MainST.GuideZone>
