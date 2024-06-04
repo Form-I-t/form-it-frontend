@@ -108,3 +108,11 @@ export const SuccessBtn = styled.div`
 
   cursor: pointer;
 `;
+
+export const SUsuccess = styled.img`
+  margin: auto;
+  display: flex;
+  margin-top: 50px;
+
+  width: 250px;
+`;
