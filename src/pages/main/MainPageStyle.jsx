@@ -1,10 +1,9 @@
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
 
 export const ContentZone = styled.div`
   position: relative;
   max-width: 764px;
   width: 100%;
-  height: 70%;
   top: 100px;
 `;
 
@@ -23,13 +22,13 @@ export const GuideText = styled.div`
   align-items: flex-end;
   margin-bottom: 4px;
 
-  font-size: var(--font-large);
+  font-size: var(--font-medium);
   font-weight: var(--weight-thin);
   white-space: nowrap;
 `;
 
 export const NickText = styled.div`
-  font-size: 30px;
+  font-size: 28px;
   font-weight: var(--weight-semi-bold);
   color: var(--main-green);
   white-space: nowrap;
@@ -40,7 +39,7 @@ export const NumberZone = styled.div`
   font-weight: var(--weight-thin);
   display: flex;
   align-items: center;
-  margin-top: 8px;
+  margin-top: 16px;
   margin-bottom: 8px;
 `;
 
@@ -79,6 +78,7 @@ export const GuideButton = styled.div`
 export const OptionBox = styled.div`
   position: relative;
   width: 80%;
+  height: fit-content;
   margin: auto;
 
   display : flex;
@@ -86,11 +86,10 @@ export const OptionBox = styled.div`
 `;
 
 export const Option = styled.div`
-  position: relative;
   width: 47%;
   height: 235px;
 
-  margin-top: 64px;
+  margin-top: 50px;
   margin-bottom: 60px;
   padding: 20px;
 
@@ -118,8 +117,7 @@ export const BubbleZone = styled.div`
   position: relative;
   width: 80%;
   height: 84px;
-
-  padding: 20px;
+  padding: 16px;
   margin: auto;
 
   display: flex;
@@ -134,11 +132,10 @@ export const BubbleZone = styled.div`
   font-weight: var(--weight-semi-bold);
 `;
 
-export const BubbleIcon = styled.div`
-  width: 44px;
-  height: 44px;
-
-  background: var(--main-black);
+export const BubbleIcon = styled.img`
+  position: absolute;
+  width: 100px;
+  bottom: 0;
 `;
 
 export const SmallText = styled.div`
@@ -148,19 +145,42 @@ export const SmallText = styled.div`
 `;
 
 export const BubbleText = styled.div`
-  position: absolute;
-  left: 80px;
   color: var(--main-white);
   font-size: var(--font-regular);
 `;
 
 export const BubblePoint = styled.div`
   position: relative;
-  width: 0px;
+  width: 20px;
   height: 0px;
   left: 280px;
   bottom: 1px;
   border-left: 36px solid var(--level-one-ol);
   border-top: 0px solid transparent;
   border-bottom: 36px solid transparent;
+`;
+
+export const ImgFadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
+export const HomeImg = styled.img`
+  position: absolute;
+  top: 2%;
+  left: 50%;
+  width: 150px;
+  transform: rotate(-20deg);
+  animation: ${ImgFadeIn} 0.3s ease-in;
+`;
+
+export const OptionImg = styled.img`
+  margin: auto;
+  display: flex;
+  width: 100px;
+  overflow: hidden;
 `;
