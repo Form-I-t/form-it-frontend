@@ -1,4 +1,5 @@
 import * as ModalST from './ModalStyle'
+import cautionImg from '../../components/imgs/cautionImg.png';
 
 export default function CautionModal({setIsBlank, modalMsg}) {
 
@@ -6,7 +7,7 @@ export default function CautionModal({setIsBlank, modalMsg}) {
 
         <ModalST.Overlay>
         <ModalST.ModalZone>
-            <ModalST.ModalIcon/>
+            <ModalST.ModalIcon src={cautionImg}/>
             <ModalST.CauModalBox>
                 <ModalST.Modalname>
                     {modalMsg}

@@ -25,15 +25,13 @@ export const ModalZone = styled.div`
   font-size: var(--font-small);
 `;
 
-export const ModalIcon = styled.div`
+export const ModalIcon = styled.img`
   position: absolute;
-  width: 70px; 
-  height: 70px;
-  top: -35px;
+  width: 90px; 
+  height: 90px;
+  top: -48px;
   z-index: 900;
-
-  border-radius: 70px;
-  background: var(--main-white);
+  transform: rotate(10deg);
 `;
 
 //높이 고정!

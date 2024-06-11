@@ -161,11 +161,16 @@ export const BubblePoint = styled.div`
 `;
 
 export const ImgFadeIn = keyframes`
-  from {
+  0% {
     opacity: 0;
+    left: 100%;
   }
-  to {
+  50% {
+    left: 45%;
+  }
+  100% {
     opacity: 1;
+    left: 50%;
   }
 `;
 
@@ -175,7 +180,7 @@ export const HomeImg = styled.img`
   left: 50%;
   width: 150px;
   transform: rotate(-20deg);
-  animation: ${ImgFadeIn} 0.3s ease-in;
+  animation: ${ImgFadeIn} 0.5s ease-in;
 `;
 
 export const OptionImg = styled.img`
@@ -184,3 +189,12 @@ export const OptionImg = styled.img`
   width: 100px;
   overflow: hidden;
 `;
+
+export const FlexZone = styled.div`
+  position: absolute;
+  display: flex;
+  align-items: center;
+
+  gap: 16px;
+  right: 16px;
+`

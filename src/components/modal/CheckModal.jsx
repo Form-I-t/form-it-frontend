@@ -1,4 +1,6 @@
 import * as ModalST from './ModalStyle'
+import cautionImg from '../../components/imgs/cautionImg.png';
+
 import { useNavigate } from 'react-router-dom'
 
 export default function CancelModal({setIsModal}) {
@@ -8,7 +10,7 @@ export default function CancelModal({setIsModal}) {
     return (
         <ModalST.Overlay>
             <ModalST.ModalZone>
-                <ModalST.ModalIcon/>
+                <ModalST.ModalIcon src={cautionImg}/>
                 <ModalST.ModalBox>
                     <ModalST.Modalname>
                         모든 입력사항을 삭제하고 <br/>

@@ -116,7 +116,7 @@ export default function Step1() {
                 </LoginST.InputBox>
 
                 <ResrchST.CantBox>
-                    <b>지원되지 않아요!</b>
+                    <b>아직 지원되지 않아요!</b>
                     <ResrchST.FlexZone>
                     <SVG name='Cant'/> 선형배율, 그리드 문항
                     </ResrchST.FlexZone>

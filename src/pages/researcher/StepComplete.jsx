@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import * as SignST from '../signup/SignUpStyle';
 import * as MainST from '../main/MainPageStyle';
 import Layout from '../../components/layout/Layout';
+import STsuccess from '../../components/imgs/researcher/STsuccess.png';
+
 import { PageContext } from '../../components/context/PageContext';
 
 export default function StepComplete() {
@@ -26,8 +28,10 @@ export default function StepComplete() {
 
                     <SignST.SmallText>
                         입력사항과 입금내역이 확인되면 <br/>
-                        검수 후 설문조사가 게시됩니다.
+                        검수 후 설문조사가 게시됩니다 🔥
                     </SignST.SmallText>
+                    <div style={{ height: '40px'}}/>
+                    <SignST.SUsuccess src={STsuccess}/>
 
                     {/* 버튼 */}
                     <SignST.SuccessBtn

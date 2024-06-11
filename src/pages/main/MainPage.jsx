@@ -113,12 +113,14 @@ export default function MainPage() {
 
             <MainST.BubbleZone>
                 <MainST.BubbleIcon src={hello}/>
-                <div style={{ width: '110px'}}/>
-                <MainST.BubbleText>
-                    <MainST.SmallText>반가워요 !</MainST.SmallText>
-                    폼잇은 처음이신가요 ?
-                </MainST.BubbleText>
-                <SVG name='Goto' size='12' color='var(--main-white)'/>
+
+                <MainST.FlexZone>
+                    <MainST.BubbleText>
+                        <MainST.SmallText>반가워요 !</MainST.SmallText>
+                        폼잇은 처음이신가요 ?
+                    </MainST.BubbleText>
+                    <SVG name='Goto' size='12' color='var(--main-white)'/>
+                </MainST.FlexZone>
             </MainST.BubbleZone>
             <MainST.BubblePoint/>
 
