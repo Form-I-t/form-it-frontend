@@ -2,9 +2,9 @@ import React, { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import * as ResrchST from './ResrchStyle';
+import styles from './IntroSwiper.module.css';
 import 'swiper/css';
 import 'swiper/css/effect-cards';
-import './CardSwiper.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCards } from 'swiper/modules';
 
@@ -32,11 +32,11 @@ export default function Researcher() {
                     effect={'cards'}
                     grabCursor={true}
                     modules={[EffectCards]}
-                    className="mySwiper"
+                    className={styles.swiper}
                 >
-                    <SwiperSlide>Slide 1</SwiperSlide>
-                    <SwiperSlide>Slide 2</SwiperSlide>
-                    <SwiperSlide>Slide 3</SwiperSlide>
+                    <SwiperSlide className={styles.swiperSlide}>Slide 1</SwiperSlide>
+                    <SwiperSlide className={styles.swiperSlide}>Slide 2</SwiperSlide>
+                    <SwiperSlide className={styles.swiperSlide}>Slide 3</SwiperSlide>
                 </Swiper>
 
                 {/* <ResrchST.IntroText>
