@@ -6,12 +6,13 @@ import * as MainST from './MainPageStyle';
 import Layout from '../../components/layout/Layout';
 import SVG from '../../components/imgs/SVG';
 
-import bbteaImg from '../../components/imgs/home/bbteaImg.png';
+import bingsuImg from '../../components/imgs/home/bingsuImg.png';
 import cakeImg from '../../components/imgs/home/cakeImg.png';
 import chickenImg from '../../components/imgs/home/chickenImg.png';
 import cofeImg from '../../components/imgs/home/cofeImg.png';
 import hbgImg from '../../components/imgs/home/hbgImg.png';
 import icecrmImg from '../../components/imgs/home/icecrmImg.png';
+
 import respndImg from '../../components/imgs/home/respndImg.png';
 import resrchImg from '../../components/imgs/home/resrchImg.png';
 import hello from '../../components/imgs/home/hello.png';
@@ -28,7 +29,7 @@ export default function MainPage() {
     const { setPage } = useContext(PageContext);
     const navigate = useNavigate();
 
-    const giftArray = ['커피', '베라', '치킨', '케이크', '햄버거', '공차'];
+    const giftArray = ['커피', '베라', '치킨', '케이크', '햄버거', '빙수'];
     const randomValue = giftArray[Math.floor(Math.random() * giftArray.length)];
     const [mainImg, setMainImg] = useState(hbgImg);
 
@@ -38,7 +39,7 @@ export default function MainPage() {
                 randomValue === '치킨' ? setMainImg(chickenImg) : (
                     randomValue === '케이크' ? setMainImg(cakeImg) : (
                         randomValue === '햄버거' ? setMainImg(hbgImg) :
-                            setMainImg(bbteaImg)
+                            setMainImg(bingsuImg)
                     )
                 )
             )
