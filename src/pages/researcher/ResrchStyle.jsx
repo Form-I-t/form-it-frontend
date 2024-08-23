@@ -459,6 +459,6 @@ export const ConfirmLarge = styled.div`
 `;
 
 export const IntroImgSrc = styled.img`
-  width: 86%;
-  height: 88%;
+  width: 340px;
+  height: 500px;
 `;
