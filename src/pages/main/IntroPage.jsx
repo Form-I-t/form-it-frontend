@@ -1,29 +1,29 @@
 import React, { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import * as ResrchST from './ResrchStyle';
-import styles from './IntroSwiper.module.css';
+import * as ResrchST from './../researcher/ResrchStyle';
+import styles from './../researcher/IntroSwiper.module.css';
 import 'swiper/css';
 import 'swiper/css/effect-cards';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCards } from 'swiper/modules';
 
-import Page1 from '../../components/imgs/researcher/slide/resrch1.png';
-import Page2 from '../../components/imgs/researcher/slide/resrch2.png';
-import Page3 from '../../components/imgs/researcher/slide/resrch3.png';
-import Page4 from '../../components/imgs/researcher/slide/resrch4.png';
-import Page5 from '../../components/imgs/researcher/slide/resrch5.png';
+import Page1 from '../../components/imgs/home/intro/intro1.png';
+import Page2 from '../../components/imgs/home/intro/intro2.png';
+import Page3 from '../../components/imgs/home/intro/intro3.png';
+import Page4 from '../../components/imgs/home/intro/intro4.png';
+import Page5 from '../../components/imgs/home/intro/intro5.png';
 
 import Layout from '../../components/layout/Layout';
 import { PageContext } from '../../components/context/PageContext';
 
-export default function Researcher() {
+export default function IntroPage() {
 
     const { setPage } = useContext(PageContext);
     const navigate = useNavigate();
 
     useEffect(() => {
-        setPage('Researcher');
+        setPage('IntroPage');
     }, []);
 
     return (
@@ -31,7 +31,7 @@ export default function Researcher() {
         <Layout>
             <ResrchST.ResrchContent>
                 <ResrchST.IntroTitle>
-                    조사자 안내
+                    폼잇은요 !
                 </ResrchST.IntroTitle>
 
                 <Swiper
@@ -58,8 +58,8 @@ export default function Researcher() {
                 </Swiper>
 
                 <ResrchST.Footer>
-                <ResrchST.SuccessBtn onClick={()=>{navigate('/step1')}}>
-                    접수 시작하기
+                <ResrchST.SuccessBtn onClick={()=>{navigate('/respondent')}}>
+                    설문 참여하기
                 </ResrchST.SuccessBtn>
                 </ResrchST.Footer>
 

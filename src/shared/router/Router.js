@@ -21,6 +21,7 @@ import Step2 from '../../pages/researcher/Step2';
 import Step3 from '../../pages/researcher/Step3';
 import StepComplete from '../../pages/researcher/StepComplete';
 import Respondent from '../../pages/respondent/Respondent';
+import IntroPage from '../../pages/main/IntroPage';
 
 const Router = () => {
     return (
@@ -54,6 +55,7 @@ const Router = () => {
                 <Route path='/step3' element={<Step3/>}/>
                 <Route path='/stepComplete' element={<StepComplete/>}/>
                 <Route path='/respondent' element={<Respondent/>}/>
+                <Route path='/intro' element={<IntroPage/>}/>
             </Routes>
         </BrowserRouter>
         </>

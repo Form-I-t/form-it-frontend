@@ -6,12 +6,12 @@ import * as MainST from './MainPageStyle';
 import Layout from '../../components/layout/Layout';
 import SVG from '../../components/imgs/SVG';
 
-import bingsuImg from '../../components/imgs/home/bingsuImg.png';
-import cakeImg from '../../components/imgs/home/cakeImg.png';
-import chickenImg from '../../components/imgs/home/chickenImg.png';
-import cofeImg from '../../components/imgs/home/cofeImg.png';
-import hbgImg from '../../components/imgs/home/hbgImg.png';
-import icecrmImg from '../../components/imgs/home/icecrmImg.png';
+import bingsuImg from '../../components/imgs/home/random/bingsuImg.png';
+import cakeImg from '../../components/imgs/home/random/cakeImg.png';
+import chickenImg from '../../components/imgs/home/random/chickenImg.png';
+import cofeImg from '../../components/imgs/home/random/cofeImg.png';
+import hbgImg from '../../components/imgs/home/random/hbgImg.png';
+import icecrmImg from '../../components/imgs/home/random/icecrmImg.png';
 
 import respndImg from '../../components/imgs/home/respndImg.png';
 import resrchImg from '../../components/imgs/home/resrchImg.png';
@@ -112,7 +112,10 @@ export default function MainPage() {
                 </MainST.Option>
             </MainST.OptionBox>
 
-            <MainST.BubbleZone>
+            <MainST.BubbleZone
+                onClick={() => {
+                    navigate('/intro');
+                }}>
                 <MainST.BubbleIcon src={hello}/>
 
                 <MainST.FlexZone>

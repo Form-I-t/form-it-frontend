@@ -457,3 +457,8 @@ export const ConfirmLarge = styled.div`
   font-size: var(--font-regular);
   margin-bottom: 6px;
 `;
+
+export const IntroImgSrc = styled.img`
+  width: 86%;
+  height: 88%;
+`;
